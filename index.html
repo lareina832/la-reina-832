@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LA REINA 832</title>
+
+<style>
+body{
+background:black;
+font-family:Arial;
+text-align:center;
+margin-top:100px;
+color:white;
+}
+
+h1{
+color:#ff00cc;
+text-shadow:0 0 20px #ff00cc;
+font-size:28px;
+}
+
+input{
+padding:12px;
+font-size:18px;
+border-radius:10px;
+border:none;
+width:250px;
+text-align:center;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+background:#ff00cc;
+color:white;
+border:none;
+border-radius:10px;
+margin-top:15px;
+cursor:pointer;
+box-shadow:0 0 15px #ff00cc;
+}
+
+button:hover{
+background:#ff33dd;
+}
+
+#resultado{
+margin-top:30px;
+font-size:22px;
+color:#00ff99;
+text-shadow:0 0 10px #00ff99;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>👑 AGENCIA ONLINE<br>LA REINA 832 👑</h1>
+
+<p>Ingresa tu palabra mágica</p>
+
+<input type="text" id="palabra" placeholder="Ej: REINA">
+<br>
+<button onclick="generar()">GENERAR NÚMERO</button>
+
+<div id="resultado"></div>
+
+<script>
+function generar(){
+var palabra=document.getElementById("palabra").value.toUpperCase();
+var total=0;
+
+if(palabra==="REINA"){
+total=1832;
+}else{
+for(var i=0;i<palabra.length;i++){
+if(palabra.charCodeAt(i)>=65 && palabra.charCodeAt(i)<=90){
+total+=palabra.charCodeAt(i)-64;
+}
+}
+}
+
+document.getElementById("resultado").innerHTML=
+"✨ "+palabra+" corresponde al número: "+total+" ✨";
+}
+</script>
+
+</body>
+  </html>
