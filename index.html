@@ -2,40 +2,55 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LA REINA 832</title>
+<title>LA REINA 832 VIP</title>
 
 <style>
 body{
-background:black;
-font-family:Arial;
-text-align:center;
-margin-top:100px;
+margin:0;
+font-family:Arial, sans-serif;
+background: radial-gradient(circle at top, #1a001a, #000000);
 color:white;
+text-align:center;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+width:90%;
+max-width:400px;
+background:#0d0d0d;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 25px #ff00cc;
 }
 
 h1{
 color:#ff00cc;
 text-shadow:0 0 20px #ff00cc;
-font-size:28px;
+font-size:24px;
 }
 
 input{
 padding:12px;
-font-size:18px;
-border-radius:10px;
+width:100%;
 border:none;
-width:250px;
+border-radius:10px;
+margin-top:10px;
 text-align:center;
+font-size:16px;
 }
 
 button{
-padding:12px 25px;
-font-size:18px;
-background:#ff00cc;
-color:white;
+margin-top:15px;
+padding:12px;
+width:100%;
 border:none;
 border-radius:10px;
-margin-top:15px;
+background:#ff00cc;
+color:white;
+font-size:16px;
 cursor:pointer;
 box-shadow:0 0 15px #ff00cc;
 }
@@ -45,28 +60,66 @@ background:#ff33dd;
 }
 
 #resultado{
-margin-top:30px;
-font-size:22px;
+margin-top:20px;
+font-size:18px;
 color:#00ff99;
 text-shadow:0 0 10px #00ff99;
+}
+
+#historial{
+margin-top:20px;
+font-size:14px;
+color:#ccc;
+text-align:left;
+max-height:100px;
+overflow-y:auto;
+}
+
+.hidden{
+display:none;
 }
 </style>
 
 </head>
-
 <body>
 
-<h1>👑 AGENCIA ONLINE<br>LA REINA 832 👑</h1>
+<div class="container">
 
+<div id="login">
+<h1>👑 LA REINA 832 VIP 👑</h1>
+<p>Acceso exclusivo</p>
+<input type="password" id="clave" placeholder="Ingresa clave secreta">
+<button onclick="verificar()">INGRESAR</button>
+<p id="error" style="color:red;"></p>
+</div>
+
+<div id="app" class="hidden">
+<h1>Generador Oficial</h1>
 <p>Ingresa tu palabra mágica</p>
-
 <input type="text" id="palabra" placeholder="Ej: REINA">
-<br>
 <button onclick="generar()">GENERAR NÚMERO</button>
 
 <div id="resultado"></div>
 
+<div id="historial">
+<strong>Historial:</strong><br>
+</div>
+</div>
+
+</div>
+
 <script>
+function verificar(){
+var clave=document.getElementById("clave").value;
+
+if(clave==="832VIP"){
+document.getElementById("login").classList.add("hidden");
+document.getElementById("app").classList.remove("hidden");
+}else{
+document.getElementById("error").innerText="Clave incorrecta 👑";
+}
+}
+
 function generar(){
 var palabra=document.getElementById("palabra").value.toUpperCase();
 var total=0;
@@ -82,9 +135,12 @@ total+=palabra.charCodeAt(i)-64;
 }
 
 document.getElementById("resultado").innerHTML=
-"✨ "+palabra+" corresponde al número: "+total+" ✨";
+"✨ "+palabra+" → "+total+" ✨";
+
+document.getElementById("historial").innerHTML +=
+palabra+" → "+total+"<br>";
 }
 </script>
 
 </body>
-  </html>
+</html>
