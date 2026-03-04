@@ -8,7 +8,7 @@
 body{
 margin:0;
 font-family:Arial, sans-serif;
-background: radial-gradient(circle at top, #1a001a, #000000);
+background: linear-gradient(135deg,#1a001a,#000000);
 color:white;
 text-align:center;
 display:flex;
@@ -21,7 +21,7 @@ height:100vh;
 width:90%;
 max-width:400px;
 background:#0d0d0d;
-padding:30px;
+padding:25px;
 border-radius:20px;
 box-shadow:0 0 25px #ff00cc;
 }
@@ -29,7 +29,21 @@ box-shadow:0 0 25px #ff00cc;
 h1{
 color:#ff00cc;
 text-shadow:0 0 20px #ff00cc;
-font-size:24px;
+font-size:22px;
+}
+
+.mensaje{
+margin-top:10px;
+font-size:14px;
+color:#ffccff;
+}
+
+.favoritos{
+margin-top:15px;
+padding:10px;
+background:#1a001a;
+border-radius:10px;
+box-shadow:0 0 10px #ff00cc;
 }
 
 input{
@@ -55,10 +69,6 @@ cursor:pointer;
 box-shadow:0 0 15px #ff00cc;
 }
 
-button:hover{
-background:#ff33dd;
-}
-
 #resultado{
 margin-top:20px;
 font-size:18px;
@@ -66,21 +76,12 @@ color:#00ff99;
 text-shadow:0 0 10px #00ff99;
 }
 
-#historial{
-margin-top:20px;
-font-size:14px;
-color:#ccc;
-text-align:left;
-max-height:100px;
-overflow-y:auto;
-}
-
 .hidden{
 display:none;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
@@ -95,20 +96,39 @@ display:none;
 
 <div id="app" class="hidden">
 <h1>Generador Oficial</h1>
-<p>Ingresa tu palabra mágica</p>
-<input type="text" id="palabra" placeholder="Ej: REINA">
+
+<div class="mensaje">
+💌 Hoy la suerte camina conmigo. Confío. Juego. Gano. 👑✨
+</div>
+
+<div class="favoritos" id="favoritosBox">
+</div>
+
+<input type="text" id="palabra" placeholder="Ingresa tu palabra">
 <button onclick="generar()">GENERAR NÚMERO</button>
 
 <div id="resultado"></div>
 
-<div id="historial">
-<strong>Historial:</strong><br>
-</div>
 </div>
 
 </div>
 
 <script>
+
+/* ============================
+   👑 ZONA PRO EDITABLE 👑
+   Solo modificá esta línea:
+============================ */
+
+var favoritosDelDia = "18 — 32 — 47 — 83";
+
+/* ============================
+   No tocar debajo si no sabés
+============================ */
+
+document.getElementById("favoritosBox").innerHTML =
+"⭐ <strong>Favoritos del Día:</strong><br>" + favoritosDelDia;
+
 function verificar(){
 var clave=document.getElementById("clave").value;
 
@@ -136,9 +156,6 @@ total+=palabra.charCodeAt(i)-64;
 
 document.getElementById("resultado").innerHTML=
 "✨ "+palabra+" → "+total+" ✨";
-
-document.getElementById("historial").innerHTML +=
-palabra+" → "+total+"<br>";
 }
 </script>
 
