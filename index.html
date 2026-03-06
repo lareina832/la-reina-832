@@ -4,211 +4,97 @@
 <meta charset="UTF-8">
 <title>LA REINA 832 VIP</title>
 
-<body style="background-image:url('https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg'); background-size:cover; background-position:center;">
+<style>
+
+body{
 margin:0;
 font-family:Arial, sans-serif;
-background:linear-gradient(135deg,#1a001a,#000000);
-color:white;
+background-image:url('https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg');
+background-size:cover;
+background-position:center;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-overflow:hidden;
+color:white;
 }
 
-.container{
-width:90%;
-max-width:400px;
-background:#0d0d0d;
-padding:25px;
+.panel{
+background:rgba(0,0,0,0.75);
+padding:40px;
 border-radius:20px;
-box-shadow:0 0 25px #ff00cc;
 text-align:center;
-position:relative;
+width:90%;
+max-width:500px;
+box-shadow:0 0 25px #ff00cc;
 }
 
 h1{
 color:#ff00cc;
 text-shadow:0 0 20px #ff00cc;
-font-size:22px;
-}
-
-.mensaje{
-margin-top:10px;
-font-size:14px;
-color:#ffccff;
-}
-
-.favoritos{
-margin-top:15px;
-padding:10px;
-background:#1a001a;
-border-radius:10px;
-box-shadow:0 0 10px #ff00cc;
 }
 
 input{
 padding:12px;
-width:100%;
+width:80%;
 border:none;
 border-radius:10px;
 margin-top:10px;
-text-align:center;
-font-size:16px;
 }
 
 button{
 margin-top:15px;
-padding:12px;
-width:100%;
+padding:12px 25px;
 border:none;
 border-radius:10px;
 background:#ff00cc;
 color:white;
-font-size:16px;
+font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 15px #ff00cc;
 }
 
-#resultado{
+.resultado{
 margin-top:20px;
-font-size:22px;
-color:#00ff99;
-text-shadow:0 0 15px #00ff99;
-opacity:0;
-transition:0.5s;
+font-size:26px;
+color:#00ffcc;
 }
 
-.hidden{display:none;}
-
-<div id="panel-admin" style="display:none;">
-margin-top:15px;
-padding:10px;
-background:#111;
-border-radius:10px;
-border:1px solid #ff00cc;
-}
-
-.sparkle{
-position:absolute;
-width:5px;
-height:5px;
-background:#ff00cc;
-border-radius:50%;
-animation:brillar 1s linear forwards;
-}
-
-@keyframes brillar{
-0%{opacity:1;transform:scale(1);}
-100%{opacity:0;transform:scale(5);}
-}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="panel">
 
-<div id="login">
 <h1>👑 LA REINA 832 VIP 👑</h1>
-<p>Acceso exclusivo</p>
-<input type="password" id="clave" placeholder="Ingresa clave secreta">
-<button onclick="verificar()">INGRESAR</button>
-<p id="error" style="color:red;"></p>
-</div>
 
-<div id="app" class="hidden">
-<h1>Generador Oficial</h1>
+<p>Ingresá una palabra y descubrí tu número estratégico</p>
 
-<div class="mensaje">
-💌 Hoy es mi día.  
-La energía está de mi lado.  
-Confío. Creo. Recibo. 👑✨
-</div>
+<input id="palabra" placeholder="Ej: REINA">
 
-<div class="favoritos" id="favoritosBox"></div>
+<br>
 
-<input type="text" id="palabra" placeholder="Ingresa tu palabra">
 <button onclick="generar()">GENERAR NÚMERO</button>
 
-<div id="resultado"></div>
-
-<button onclick="mostrarAdmin()" style="background:#333;margin-top:10px;">
-⚙️ Panel Reina
-</button>
-
-<div id="admin" class="adminPanel hidden">
-<p>Editar Favoritos del Día:</p>
-<input type="text" id="nuevoFavorito" placeholder="Ej: 05 — 18 — 29 — 99">
-<button onclick="guardarFavoritos()">Guardar</button>
-</div>
+<div class="resultado" id="resultado"></div>
 
 </div>
-</div>
-
-<audio id="sonido" src="https://www.soundjay.com/buttons/sounds/button-09.mp3"></audio>
 
 <script>
 
-var favoritosDelDia = localStorage.getItem("favoritos") || "18 — 32 — 47 — 83";
-actualizarFavoritos();
-
-function actualizarFavoritos(){
-document.getElementById("favoritosBox").innerHTML =
-"⭐ <strong>Favoritos del Día:</strong><br>" + favoritosDelDia;
-}
-
-function verificar(){
-var clave=document.getElementById("clave").value;
-if(clave==="832VIP"){
-document.getElementById("login").classList.add("hidden");
-document.getElementById("app").classList.remove("hidden");
-}else{
-document.getElementById("error").innerText="Clave incorrecta 👑";
-}
-}
-
 function generar(){
-var palabra=document.getElementById("palabra").value.toUpperCase();
-var total=0;
 
-if(palabra==="REINA"){ total=1832; }
+let palabra = document.getElementById("palabra").value.toUpperCase();
+
+if(palabra=="REINA"){
+document.getElementById("resultado").innerHTML="✨ REINA = 1832 ✨";
+}
 else{
-for(var i=0;i<palabra.length;i++){
-if(palabra.charCodeAt(i)>=65 && palabra.charCodeAt(i)<=90){
-total+=palabra.charCodeAt(i)-64;
-}
-}
+document.getElementById("resultado").innerHTML="Número estratégico: "+Math.floor(Math.random()*9999);
 }
 
-var resultado=document.getElementById("resultado");
-resultado.innerHTML="✨ "+palabra+" → "+total+" ✨";
-resultado.style.opacity=1;
-
-document.getElementById("sonido").play();
-crearDestellos();
 }
 
-function mostrarAdmin(){
-document.getElementById("admin").classList.toggle("hidden");
-}
-
-function guardarFavoritos(){
-favoritosDelDia=document.getElementById("nuevoFavorito").value;
-localStorage.setItem("favoritos",favoritosDelDia);
-actualizarFavoritos();
-}
-
-function crearDestellos(){
-for(let i=0;i<10;i++){
-let spark=document.createElement("div");
-spark.className="sparkle";
-spark.style.top=Math.random()*300+"px";
-spark.style.left=Math.random()*300+"px";
-document.querySelector(".container").appendChild(spark);
-setTimeout(()=>{spark.remove();},1000);
-}
-}
 </script>
 
 </body>
