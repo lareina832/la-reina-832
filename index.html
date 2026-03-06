@@ -2,52 +2,98 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>REINA 832</title>
+<title>LA REINA 832</title>
 
 <style>
 
 body{
 font-family: Arial;
-background:#111;
-color:white;
 text-align:center;
+color:white;
+margin:0;
+
+background-image:url("https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
 
 h1{
-color:#ff4da6;
+font-size:40px;
+margin-top:30px;
+text-shadow:2px 2px 10px black;
 }
 
 .panel{
-background:#222;
-padding:20px;
-margin:20px;
-border-radius:10px;
+
+background:rgba(0,0,0,0.65);
+
+padding:25px;
+
+margin:20px auto;
+
+width:90%;
+
+max-width:600px;
+
+border-radius:15px;
+
 }
 
 .numero{
-font-size:60px;
-color:#ff4da6;
-margin:20px;
-}
 
-button{
-background:#ff4da6;
-color:white;
-border:none;
-padding:10px 20px;
-margin:5px;
-border-radius:5px;
-font-size:16px;
+font-size:70px;
+
+color:#ff4da6;
+
+font-weight:bold;
+
+margin:20px;
+
 }
 
 input{
-padding:8px;
-margin:5px;
+
+padding:12px;
+
+width:80%;
+
+font-size:18px;
+
+text-align:center;
+
+text-transform:uppercase;
+
+}
+
+button{
+
+background:#ff4da6;
+
+border:none;
+
+color:white;
+
+padding:12px 20px;
+
+margin-top:10px;
+
+font-size:18px;
+
+border-radius:8px;
+
+cursor:pointer;
+
 }
 
 textarea{
-width:90%;
-margin-top:10px;
+
+width:95%;
+
+margin-top:15px;
+
+font-size:18px;
+
 }
 
 </style>
@@ -55,11 +101,11 @@ margin-top:10px;
 
 <body>
 
-<h1>👑 REINA 832</h1>
+<h1>👑 AGENCIA ONLINE LA REINA 832 👑</h1>
 
 <div class="panel">
 
-<h2>NÚMERO CALIENTE</h2>
+<h2>🔥 NÚMERO CALIENTE</h2>
 
 <div id="numeroCaliente" class="numero">----</div>
 
@@ -67,13 +113,13 @@ margin-top:10px;
 
 <div class="panel">
 
-<h2>RESULTADOS</h2>
+<h2>📊 RESULTADOS DEL DÍA</h2>
 
 <p>CIUDAD: <span id="ciudad">----</span></p>
 <p>PROVINCIA: <span id="provincia">----</span></p>
-<p>CORDOBA: <span id="cordoba">----</span></p>
+<p>CÓRDOBA: <span id="cordoba">----</span></p>
 <p>SANTA FE: <span id="santafe">----</span></p>
-<p>ENTRE RIOS: <span id="entrerios">----</span></p>
+<p>ENTRE RÍOS: <span id="entrerios">----</span></p>
 <p>URUGUAY: <span id="uruguay">----</span></p>
 
 </div>
@@ -84,14 +130,27 @@ margin-top:10px;
 
 <br>
 
-<textarea id="tablaGenerada" rows="10"></textarea>
+<textarea id="tablaGenerada" rows="8"></textarea>
 
 <br>
 
-<button onclick="copiar()">COPIAR</button>
+<button onclick="copiar()">COPIAR RESULTADOS</button>
+
+<div class="panel">
+
+<h2>💰 JUGAR AHORA</h2>
+
+<p>Enviá tu jugada directo por WhatsApp</p>
+
+<a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar%20en%20LA%20REINA%20832" target="_blank">
+
+<button style="font-size:22px;padding:15px 30px;background:#25D366;">
+📲 JUGAR POR WHATSAPP
+</button>
+
+</a>
 
 </div>
-
 <button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
 
 <div id="panelAdmin" class="panel" style="display:none">
@@ -101,36 +160,44 @@ margin-top:10px;
 <h3>NÚMERO CALIENTE</h3>
 
 <input id="inputNumero">
+
+<br>
+
 <button onclick="guardarNumero()">GUARDAR</button>
 
 <h3>CARGAR RESULTADOS</h3>
 
-CIUDAD  
+CIUDAD<br>
 <input id="input_ciudad">
 <button onclick="guardarResultado('ciudad')">OK</button>
-<br>
 
-PROVINCIA  
+<br><br>
+
+PROVINCIA<br>
 <input id="input_provincia">
 <button onclick="guardarResultado('provincia')">OK</button>
-<br>
 
-CORDOBA  
+<br><br>
+
+CÓRDOBA<br>
 <input id="input_cordoba">
 <button onclick="guardarResultado('cordoba')">OK</button>
-<br>
 
-SANTA FE  
+<br><br>
+
+SANTA FE<br>
 <input id="input_santafe">
 <button onclick="guardarResultado('santafe')">OK</button>
-<br>
 
-ENTRE RIOS  
+<br><br>
+
+ENTRE RÍOS<br>
 <input id="input_entrerios">
 <button onclick="guardarResultado('entrerios')">OK</button>
-<br>
 
-URUGUAY  
+<br><br>
+
+URUGUAY<br>
 <input id="input_uruguay">
 <button onclick="guardarResultado('uruguay')">OK</button>
 
@@ -138,23 +205,25 @@ URUGUAY
 
 <script>
 
-const CLAVE_ADMIN="832REINA";
+const CLAVE="832REINA";
 
 let numeroCaliente = localStorage.getItem("numeroCaliente") || "";
 
 let resultados = JSON.parse(localStorage.getItem("resultados")) || {};
 
 if(numeroCaliente){
+
 document.getElementById("numeroCaliente").innerText = numeroCaliente;
+
 }
 
 for(let lugar in resultados){
 
-let elemento=document.getElementById(lugar);
+let el=document.getElementById(lugar);
 
-if(elemento){
+if(el){
 
-elemento.innerText=resultados[lugar];
+el.innerText=resultados[lugar];
 
 }
 
@@ -162,9 +231,9 @@ elemento.innerText=resultados[lugar];
 
 function abrirPanel(){
 
-let clave=prompt("CLAVE ADMIN");
+let clave=prompt("INGRESA CLAVE ADMIN");
 
-if(clave===CLAVE_ADMIN){
+if(clave===CLAVE){
 
 document.getElementById("panelAdmin").style.display="block";
 
@@ -210,7 +279,7 @@ texto+=lugar.toUpperCase()+" "+resultados[lugar]+"\n";
 
 }
 
-document.getElementById("tablaGenerada").value=texto.toUpperCase();
+document.getElementById("tablaGenerada").value=texto;
 
 }
 
@@ -229,4 +298,4 @@ alert("COPIADO");
 </script>
 
 </body>
-  </html>
+                                              </html>
