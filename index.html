@@ -133,4 +133,310 @@ box-shadow:0 0 40px #ff4da6;
 
 0%{transform:scale(1);}
 50%{transform:scale(1.15);}
-100%
+100%{transform:scale(1);}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>👑 AGENCIA ONLINE LA REINA 832 👑</h1>
+
+<div class="panel">
+
+<div class="mensaje">
+
+✨ Hoy la suerte está de tu lado ✨  
+Confía en tu intuición.  
+Los números correctos llegan a quien cree. 🍀  
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>🔮 GENERADOR DE NÚMEROS</h2>
+
+<input id="palabra" placeholder="ESCRIBE UNA PALABRA">
+
+<br>
+
+<button onclick="generar()">GENERAR</button>
+
+<div id="resultado" class="numero">----</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>🔥 NÚMERO CALIENTE</h2>
+
+<div id="numeroCaliente" class="numero">----</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>💰 JUGAR AHORA</h2>
+
+<a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar%20en%20LA%20REINA%20832" target="_blank">
+
+<button style="background:#25D366;font-size:22px;">
+📲 JUGAR POR WHATSAPP
+</button>
+
+</a>
+
+</div>
+
+
+<div class="panel">
+
+<h2>📊 RESULTADOS DEL DÍA</h2>
+
+<p class="resultadoGrande">CIUDAD: <span id="ciudad">----</span></p>
+<p class="resultadoGrande">PROVINCIA: <span id="provincia">----</span></p>
+<p class="resultadoGrande">CÓRDOBA: <span id="cordoba">----</span></p>
+<p class="resultadoGrande">SANTA FE: <span id="santafe">----</span></p>
+<p class="resultadoGrande">ENTRE RÍOS: <span id="entrerios">----</span></p>
+<p class="resultadoGrande">URUGUAY: <span id="uruguay">----</span></p>
+
+</div>
+
+
+<div class="panel">
+
+<h2>👥 JUGADORES HOY</h2>
+
+<div class="numero" id="contadorJugadores">0</div>
+
+</div>
+
+
+<button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
+
+
+<div id="panelAdmin" class="panel" style="display:none">
+
+<h2>PANEL ADMIN</h2>
+
+<h3>NÚMERO CALIENTE</h3>
+
+<input id="inputNumero">
+
+<br>
+
+<button onclick="guardarNumero()">GUARDAR</button>
+
+
+<h3>CARGAR RESULTADOS</h3>
+
+CIUDAD<br>
+<input id="input_ciudad">
+<button onclick="guardarResultado('ciudad')">OK</button>
+
+<br><br>
+
+PROVINCIA<br>
+<input id="input_provincia">
+<button onclick="guardarResultado('provincia')">OK</button>
+
+<br><br>
+
+CÓRDOBA<br>
+<input id="input_cordoba">
+<button onclick="guardarResultado('cordoba')">OK</button>
+
+<br><br>
+
+SANTA FE<br>
+<input id="input_santafe">
+<button onclick="guardarResultado('santafe')">OK</button>
+
+<br><br>
+
+ENTRE RÍOS<br>
+<input id="input_entrerios">
+<button onclick="guardarResultado('entrerios')">OK</button>
+
+<br><br>
+
+URUGUAY<br>
+<input id="input_uruguay">
+<button onclick="guardarResultado('uruguay')">OK</button>
+
+<br><br>
+
+<h3>LOS 3 DE LAS 3</h3>
+
+<input id="input_tres1">
+<button onclick="guardar3('tres1')">OK</button>
+
+<br><br>
+
+<input id="input_tres2">
+<button onclick="guardar3('tres2')">OK</button>
+
+<br><br>
+
+<input id="input_tres3">
+<button onclick="guardar3('tres3')">OK</button>
+
+</div>
+
+
+<!-- PANEL LATERAL -->
+
+<div class="panel3">
+
+<h3>LOS 3 DE LAS 3</h3>
+
+<div id="tres1" class="numero3">000</div>
+<div id="tres2" class="numero3">000</div>
+<div id="tres3" class="numero3">000</div>
+
+</div>
+
+
+<script>
+
+const CLAVE="832REINA";
+
+let numeroCaliente = localStorage.getItem("numeroCaliente") || "";
+
+let resultados = JSON.parse(localStorage.getItem("resultados")) || {};
+
+if(numeroCaliente){
+document.getElementById("numeroCaliente").innerText = numeroCaliente;
+}
+
+for(let lugar in resultados){
+
+let el=document.getElementById(lugar);
+
+if(el){
+el.innerText=resultados[lugar];
+}
+
+}
+
+/* GENERADOR */
+
+function generar(){
+
+let palabra=document.getElementById("palabra").value.toUpperCase();
+
+document.getElementById("palabra").value=palabra;
+
+let suma=0;
+
+for(let i=0;i<palabra.length;i++){
+
+suma+=palabra.charCodeAt(i);
+
+}
+
+let numero=(suma*832)%10000;
+
+document.getElementById("resultado").innerText=numero;
+
+}
+
+/* PANEL ADMIN */
+
+function abrirPanel(){
+
+let clave=prompt("INGRESA CLAVE ADMIN");
+
+if(clave===CLAVE){
+
+document.getElementById("panelAdmin").style.display="block";
+
+}else{
+
+alert("CLAVE INCORRECTA");
+
+}
+
+}
+
+/* NUMERO CALIENTE */
+
+function guardarNumero(){
+
+let num=document.getElementById("inputNumero").value;
+
+numeroCaliente=num;
+
+localStorage.setItem("numeroCaliente",num);
+
+document.getElementById("numeroCaliente").innerText=num;
+
+}
+
+/* RESULTADOS */
+
+function guardarResultado(lugar){
+
+let valor=document.getElementById("input_"+lugar).value;
+
+resultados[lugar]=valor;
+
+localStorage.setItem("resultados",JSON.stringify(resultados));
+
+document.getElementById(lugar).innerText=valor;
+
+}
+
+/* LOS 3 DE LAS 3 */
+
+function guardar3(id){
+
+let valor=document.getElementById("input_"+id).value;
+
+localStorage.setItem(id,valor);
+
+document.getElementById(id).innerText=valor;
+
+}
+
+function cargar3(){
+
+["tres1","tres2","tres3"].forEach(id=>{
+
+let v=localStorage.getItem(id);
+
+if(v){
+document.getElementById(id).innerText=v;
+}
+
+});
+
+}
+
+cargar3();
+
+/* CONTADOR JUGADORES */
+
+let jugadores = localStorage.getItem("jugadores");
+
+if(!jugadores){
+
+jugadores= Math.floor(Math.random()*80)+20;
+
+localStorage.setItem("jugadores",jugadores);
+
+}
+
+document.getElementById("contadorJugadores").innerText=jugadores;
+
+</script>
+
+</body>
+                                        </html>
