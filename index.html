@@ -11,7 +11,6 @@ font-family: Arial;
 text-align:center;
 color:white;
 margin:0;
-
 background-image:url("https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg");
 background-size:cover;
 background-position:center;
@@ -31,16 +30,13 @@ margin:20px auto;
 width:90%;
 max-width:650px;
 border-radius:15px;
-
-box-shadow:0 0 10px #ff4da6;
+box-shadow:0 0 15px #ff4da6;
 animation:brilloPanel 3s infinite alternate;
 }
 
 @keyframes brilloPanel{
-
 0%{box-shadow:0 0 10px #ff4da6;}
-100%{box-shadow:0 0 25px #ff4da6;}
-
+100%{box-shadow:0 0 30px #ff4da6;}
 }
 
 .numero{
@@ -52,11 +48,9 @@ animation:brillo 2s infinite;
 }
 
 @keyframes brillo{
-
 0%{text-shadow:0 0 10px #ff4da6;}
 50%{text-shadow:0 0 35px #ff4da6;}
 100%{text-shadow:0 0 10px #ff4da6;}
-
 }
 
 .resultadoGrande{
@@ -90,7 +84,7 @@ color:#ffd700;
 text-shadow:0 0 10px black;
 }
 
-/* PANEL LOS 3 DE LAS 3 */
+/* PANEL LATERAL */
 
 .panel3{
 position:fixed;
@@ -100,12 +94,7 @@ background:rgba(0,0,0,0.65);
 border:2px solid #ff4da6;
 border-radius:15px;
 padding:15px;
-
-box-shadow:
-0 0 10px #ff4da6,
-0 0 20px #ff4da6,
-0 0 40px #ff4da6;
-
+box-shadow:0 0 40px #ff4da6;
 animation:brilloReina 2s infinite alternate;
 }
 
@@ -118,23 +107,14 @@ animation:latido 1.5s infinite;
 }
 
 @keyframes brilloReina{
-
-0%{
-box-shadow:0 0 10px #ff4da6;
-}
-
-100%{
-box-shadow:0 0 40px #ff4da6;
-}
-
+0%{box-shadow:0 0 10px #ff4da6;}
+100%{box-shadow:0 0 40px #ff4da6;}
 }
 
 @keyframes latido{
-
 0%{transform:scale(1);}
 50%{transform:scale(1.15);}
 100%{transform:scale(1);}
-
 }
 
 </style>
@@ -145,17 +125,12 @@ box-shadow:0 0 40px #ff4da6;
 <h1>👑 AGENCIA ONLINE LA REINA 832 👑</h1>
 
 <div class="panel">
-
 <div class="mensaje">
-
 ✨ Hoy la suerte está de tu lado ✨  
 Confía en tu intuición.  
 Los números correctos llegan a quien cree. 🍀  
-
 </div>
-
 </div>
-
 
 <div class="panel">
 
@@ -171,7 +146,6 @@ Los números correctos llegan a quien cree. 🍀
 
 </div>
 
-
 <div class="panel">
 
 <h2>🔥 NÚMERO CALIENTE</h2>
@@ -179,7 +153,6 @@ Los números correctos llegan a quien cree. 🍀
 <div id="numeroCaliente" class="numero">----</div>
 
 </div>
-
 
 <div class="panel">
 
@@ -195,20 +168,31 @@ Los números correctos llegan a quien cree. 🍀
 
 </div>
 
-
 <div class="panel">
 
 <h2>📊 RESULTADOS DEL DÍA</h2>
 
+<p class="resultadoGrande">SORTEO: <span id="sorteo">----</span></p>
+
 <p class="resultadoGrande">CIUDAD: <span id="ciudad">----</span></p>
+
 <p class="resultadoGrande">PROVINCIA: <span id="provincia">----</span></p>
+
 <p class="resultadoGrande">CÓRDOBA: <span id="cordoba">----</span></p>
+
 <p class="resultadoGrande">SANTA FE: <span id="santafe">----</span></p>
+
 <p class="resultadoGrande">ENTRE RÍOS: <span id="entrerios">----</span></p>
+
+<p class="resultadoGrande">CORRIENTES: <span id="corrientes">----</span></p>
+
+<p class="resultadoGrande">MENDOZA: <span id="mendoza">----</span></p>
+
+<p class="resultadoGrande">CHACO: <span id="chaco">----</span></p>
+
 <p class="resultadoGrande">URUGUAY: <span id="uruguay">----</span></p>
 
 </div>
-
 
 <div class="panel">
 
@@ -218,9 +202,7 @@ Los números correctos llegan a quien cree. 🍀
 
 </div>
 
-
 <button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
-
 
 <div id="panelAdmin" class="panel" style="display:none">
 
@@ -229,11 +211,12 @@ Los números correctos llegan a quien cree. 🍀
 <h3>NÚMERO CALIENTE</h3>
 
 <input id="inputNumero">
-
-<br>
-
 <button onclick="guardarNumero()">GUARDAR</button>
 
+<h3>SORTEO</h3>
+
+<input id="input_sorteo">
+<button onclick="guardarResultado('sorteo')">OK</button>
 
 <h3>CARGAR RESULTADOS</h3>
 
@@ -267,11 +250,27 @@ ENTRE RÍOS<br>
 
 <br><br>
 
+CORRIENTES<br>
+<input id="input_corrientes">
+<button onclick="guardarResultado('corrientes')">OK</button>
+
+<br><br>
+
+MENDOZA<br>
+<input id="input_mendoza">
+<button onclick="guardarResultado('mendoza')">OK</button>
+
+<br><br>
+
+CHACO<br>
+<input id="input_chaco">
+<button onclick="guardarResultado('chaco')">OK</button>
+
+<br><br>
+
 URUGUAY<br>
 <input id="input_uruguay">
 <button onclick="guardarResultado('uruguay')">OK</button>
-
-<br><br>
 
 <h3>LOS 3 DE LAS 3</h3>
 
@@ -290,9 +289,6 @@ URUGUAY<br>
 
 </div>
 
-
-<!-- PANEL LATERAL -->
-
 <div class="panel3">
 
 <h3>LOS 3 DE LAS 3</h3>
@@ -303,13 +299,11 @@ URUGUAY<br>
 
 </div>
 
-
 <script>
 
 const CLAVE="832REINA";
 
 let numeroCaliente = localStorage.getItem("numeroCaliente") || "";
-
 let resultados = JSON.parse(localStorage.getItem("resultados")) || {};
 
 if(numeroCaliente){
@@ -317,29 +311,21 @@ document.getElementById("numeroCaliente").innerText = numeroCaliente;
 }
 
 for(let lugar in resultados){
-
 let el=document.getElementById(lugar);
-
 if(el){
 el.innerText=resultados[lugar];
 }
-
 }
-
-/* GENERADOR */
 
 function generar(){
 
 let palabra=document.getElementById("palabra").value.toUpperCase();
-
 document.getElementById("palabra").value=palabra;
 
 let suma=0;
 
 for(let i=0;i<palabra.length;i++){
-
 suma+=palabra.charCodeAt(i);
-
 }
 
 let numero=(suma*832)%10000;
@@ -348,25 +334,17 @@ document.getElementById("resultado").innerText=numero;
 
 }
 
-/* PANEL ADMIN */
-
 function abrirPanel(){
 
 let clave=prompt("INGRESA CLAVE ADMIN");
 
 if(clave===CLAVE){
-
 document.getElementById("panelAdmin").style.display="block";
-
 }else{
-
 alert("CLAVE INCORRECTA");
-
 }
 
 }
-
-/* NUMERO CALIENTE */
 
 function guardarNumero(){
 
@@ -380,8 +358,6 @@ document.getElementById("numeroCaliente").innerText=num;
 
 }
 
-/* RESULTADOS */
-
 function guardarResultado(lugar){
 
 let valor=document.getElementById("input_"+lugar).value;
@@ -393,8 +369,6 @@ localStorage.setItem("resultados",JSON.stringify(resultados));
 document.getElementById(lugar).innerText=valor;
 
 }
-
-/* LOS 3 DE LAS 3 */
 
 function guardar3(id){
 
@@ -422,16 +396,11 @@ document.getElementById(id).innerText=v;
 
 cargar3();
 
-/* CONTADOR JUGADORES */
-
 let jugadores = localStorage.getItem("jugadores");
 
 if(!jugadores){
-
 jugadores= Math.floor(Math.random()*80)+20;
-
 localStorage.setItem("jugadores",jugadores);
-
 }
 
 document.getElementById("contadorJugadores").innerText=jugadores;
