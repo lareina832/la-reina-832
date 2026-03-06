@@ -1,318 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LA REINA 832</title>
+<title>REINA 832</title>
 
 <style>
 
 body{
-margin:0;
-font-family:Arial;
+font-family: Arial;
+background:#111;
 color:white;
 text-align:center;
-
-background-image:url("https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-}
-
-.capa{
-background:rgba(0,0,0,0.65);
-min-height:100vh;
-padding:30px;
 }
 
 h1{
-font-size:60px;
-color:#ff2ec4;
-text-shadow:0 0 25px #ff00cc;
+color:#ff4da6;
 }
 
-input{
-padding:18px;
-font-size:24px;
-border-radius:12px;
-border:none;
-width:80%;
-max-width:350px;
-}
-
-button{
-padding:15px 30px;
-font-size:20px;
-border:none;
-border-radius:12px;
-margin:10px;
-cursor:pointer;
-}
-
-.boton{
-background:#ff2ec4;
-color:white;
-}
-
-.resultado{
-font-size:55px;
-margin:25px;
-font-weight:bold;
+.panel{
+background:#222;
+padding:20px;
+margin:20px;
+border-radius:10px;
 }
 
 .numero{
-display:inline-block;
-background:#ff2ec4;
-padding:18px 28px;
-margin:10px;
-border-radius:15px;
-font-size:35px;
+font-size:60px;
+color:#ff4da6;
+margin:20px;
 }
 
-.caliente{
-background:gold;
-color:black;
-font-size:40px;
+button{
+background:#ff4da6;
+color:white;
+border:none;
+padding:10px 20px;
+margin:5px;
+border-radius:5px;
+font-size:16px;
 }
 
-table{
-width:90%;
-margin:auto;
-background:rgba(0,0,0,0.7);
-border-radius:15px;
-font-size:22px;
-}
-
-td,th{
-padding:10px;
-}
-
-#admin{
-display:none;
-margin-top:40px;
+input{
+padding:8px;
+margin:5px;
 }
 
 textarea{
 width:90%;
-height:120px;
-font-size:20px;
-border-radius:10px;
-padding:10px;
-}
-
-.whatsapp{
-background:#25D366;
-color:white;
+margin-top:10px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="capa">
+<h1>👑 REINA 832</h1>
 
-<h1>👑 LA REINA 832 👑</h1>
+<div class="panel">
 
-<p>Ingresá una palabra y descubrí tu número</p>
-
-<input id="palabra" placeholder="Escribe una palabra">
-
-<br>
-
-<button class="boton" onclick="generar()">GENERAR</button>
-
-<div id="resultado" class="resultado"></div>
-
-<h2>🔥 NÚMERO CALIENTE 🔥</h2>
-
-<div id="caliente" class="numero caliente"></div>
-
-<h2>⭐ FAVORITOS DE LA REINA ⭐</h2>
-
-<div id="listaFavoritos">
-
-<div class="numero">12</div>
-<div class="numero">33</div>
-<div class="numero">70</div>
-<div class="numero">88</div>
-
-</div>
-
-<h2>📊 RESULTADOS DEL DÍA</h2>
-
-<table>
-
-<tr>
-<th>Lotería</th>
-<th>Número</th>
-</tr>
-
-<tr>
-<td>Ciudad</td>
-<td id="ciudad">----</td>
-</tr>
-
-<tr>
-<td>Provincia</td>
-<td id="provincia">----</td>
-</tr>
-
-<tr>
-<td>Córdoba</td>
-<td id="cordoba">----</td>
-</tr>
-
-<tr>
-<td>Santa Fe</td>
-<td id="santafe">----</td>
-</tr>
-
-<tr>
-<td>Entre Ríos</td>
-<td id="entrerios">----</td>
-</tr>
-
-<tr>
-<td>Uruguay</td>
-<td id="uruguay">----</td>
-</tr>
-
-</table>
-
-<br>
-
-<button class="whatsapp" onclick="window.open('https://wa.me/5493517682897')">
-💬 JUGAR POR WHATSAPP
-</button>
-
-<br><br>
-
-<button onclick="panel()">Panel secreto</button>
-
-<div id="admin">
-
-<h3>Editar favoritos</h3>
-
-<textarea id="favEdit">
-
-12
-33
-70
-88
-
-</textarea>
-
-<br>
-
-<button onclick="guardar()">Guardar</button>
-
-</div>
-
-</div>
-
-<script>
-
-function generar(){
-
-let palabra=document.getElementById("palabra").value.toUpperCase()
-
-let tabla={
-
-"REINA":1832,
-"AMOR":2478,
-"DINERO":3912,
-"SUERTE":7788
-
-}
-
-let numero
-
-if(tabla[palabra]){
-
-numero=tabla[palabra]
-
-}else{
-
-numero=0
-
-for(let i=0;i<palabra.length;i++){
-
-numero+=palabra.charCodeAt(i)
-
-}
-
-numero=numero%10000
-
-}
-
-document.getElementById("resultado").innerHTML=numero
-
-}
-
-function numeroCaliente(){
-
-let n=Math.floor(Math.random()*100)
-
-document.getElementById("caliente").innerHTML=n
-
-}
-
-numeroCaliente()
-
-function panel(){
-
-let clave=prompt("Clave admin")
-
-if(clave==="832"){
-
-document.getElementById("admin").style.display="block"
-
-}else{
-
-alert("Clave incorrecta")
-
-}
-
-}
-
-function guardar(){
-
-let texto=document.getElementById("favEdit").value
-
-let lista=texto.split("\n")
-
-let html=""
-
-lista.forEach(n=>{
-
-html+=`<div class="numero">${n}</div>`
-
-})
-
-document.getElementById("listaFavoritos").innerHTML=html
-
-}
-
-function cargarResultados(){
-
-document.getElementById("ciudad").innerHTML="3838"
-document.getElementById("provincia").innerHTML="9518"
-document.getElementById("cordoba").innerHTML="2588"
-document.getElementById("santafe").innerHTML="1170"
-document.getElementById("entrerios").innerHTML="5133"
-document.getElementById("uruguay").innerHTML="738"
-
-}
-
-cargarResultados()
-
-</script>
-
-</body>
-
-  </html>
+<h2>NÚMERO CALIENTE</h2
