@@ -59,4 +59,174 @@ margin-top:10px;
 
 <div class="panel">
 
-<h2>NÚMERO CALIENTE</h2
+<h2>NÚMERO CALIENTE</h2>
+
+<div id="numeroCaliente" class="numero">----</div>
+
+</div>
+
+<div class="panel">
+
+<h2>RESULTADOS</h2>
+
+<p>CIUDAD: <span id="ciudad">----</span></p>
+<p>PROVINCIA: <span id="provincia">----</span></p>
+<p>CORDOBA: <span id="cordoba">----</span></p>
+<p>SANTA FE: <span id="santafe">----</span></p>
+<p>ENTRE RIOS: <span id="entrerios">----</span></p>
+<p>URUGUAY: <span id="uruguay">----</span></p>
+
+</div>
+
+<div class="panel">
+
+<button onclick="generarTabla()">GENERAR TABLA</button>
+
+<br>
+
+<textarea id="tablaGenerada" rows="10"></textarea>
+
+<br>
+
+<button onclick="copiar()">COPIAR</button>
+
+</div>
+
+<button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
+
+<div id="panelAdmin" class="panel" style="display:none">
+
+<h2>PANEL ADMIN</h2>
+
+<h3>NÚMERO CALIENTE</h3>
+
+<input id="inputNumero">
+<button onclick="guardarNumero()">GUARDAR</button>
+
+<h3>CARGAR RESULTADOS</h3>
+
+CIUDAD  
+<input id="input_ciudad">
+<button onclick="guardarResultado('ciudad')">OK</button>
+<br>
+
+PROVINCIA  
+<input id="input_provincia">
+<button onclick="guardarResultado('provincia')">OK</button>
+<br>
+
+CORDOBA  
+<input id="input_cordoba">
+<button onclick="guardarResultado('cordoba')">OK</button>
+<br>
+
+SANTA FE  
+<input id="input_santafe">
+<button onclick="guardarResultado('santafe')">OK</button>
+<br>
+
+ENTRE RIOS  
+<input id="input_entrerios">
+<button onclick="guardarResultado('entrerios')">OK</button>
+<br>
+
+URUGUAY  
+<input id="input_uruguay">
+<button onclick="guardarResultado('uruguay')">OK</button>
+
+</div>
+
+<script>
+
+const CLAVE_ADMIN="832REINA";
+
+let numeroCaliente = localStorage.getItem("numeroCaliente") || "";
+
+let resultados = JSON.parse(localStorage.getItem("resultados")) || {};
+
+if(numeroCaliente){
+document.getElementById("numeroCaliente").innerText = numeroCaliente;
+}
+
+for(let lugar in resultados){
+
+let elemento=document.getElementById(lugar);
+
+if(elemento){
+
+elemento.innerText=resultados[lugar];
+
+}
+
+}
+
+function abrirPanel(){
+
+let clave=prompt("CLAVE ADMIN");
+
+if(clave===CLAVE_ADMIN){
+
+document.getElementById("panelAdmin").style.display="block";
+
+}else{
+
+alert("CLAVE INCORRECTA");
+
+}
+
+}
+
+function guardarNumero(){
+
+let num=document.getElementById("inputNumero").value;
+
+numeroCaliente=num;
+
+localStorage.setItem("numeroCaliente",num);
+
+document.getElementById("numeroCaliente").innerText=num;
+
+}
+
+function guardarResultado(lugar){
+
+let valor=document.getElementById("input_"+lugar).value;
+
+resultados[lugar]=valor;
+
+localStorage.setItem("resultados",JSON.stringify(resultados));
+
+document.getElementById(lugar).innerText=valor;
+
+}
+
+function generarTabla(){
+
+let texto="RESULTADOS DEL DIA\n\n";
+
+for(let lugar in resultados){
+
+texto+=lugar.toUpperCase()+" "+resultados[lugar]+"\n";
+
+}
+
+document.getElementById("tablaGenerada").value=texto.toUpperCase();
+
+}
+
+function copiar(){
+
+let texto=document.getElementById("tablaGenerada");
+
+texto.select();
+
+document.execCommand("copy");
+
+alert("COPIADO");
+
+}
+
+</script>
+
+</body>
+  </html>
