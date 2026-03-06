@@ -38,6 +38,17 @@ font-size:70px;
 color:#ff4da6;
 font-weight:bold;
 margin:20px;
+animation:brillo 2s infinite;
+}
+
+@keyframes brillo{
+
+0%{text-shadow:0 0 10px #ff4da6;}
+
+50%{text-shadow:0 0 35px #ff4da6;}
+
+100%{text-shadow:0 0 10px #ff4da6;}
+
 }
 
 input{
@@ -59,10 +70,16 @@ border-radius:10px;
 cursor:pointer;
 }
 
-textarea{
-width:95%;
-margin-top:15px;
-font-size:18px;
+.mensaje{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#ffd700;
+
+text-shadow:0 0 10px black;
+
 }
 
 </style>
@@ -71,6 +88,18 @@ font-size:18px;
 <body>
 
 <h1>👑 AGENCIA ONLINE LA REINA 832 👑</h1>
+
+<div class="panel">
+
+<div class="mensaje">
+
+✨ Hoy la suerte está de tu lado ✨  
+Confía en tu intuición.  
+Los números correctos llegan a quien cree. 🍀  
+
+</div>
+
+</div>
 
 <div class="panel">
 
@@ -105,22 +134,10 @@ font-size:18px;
 <p>CÓRDOBA: <span id="cordoba">----</span></p>
 <p>SANTA FE: <span id="santafe">----</span></p>
 <p>ENTRE RÍOS: <span id="entrerios">----</span></p>
+<p>CORRIENTES: <span id="provincia">----</span></p>
+<p>MENDOZA: <span id="provincia">----</span></p>
+<p>CHACO: <span id="provincia">----</span></p>
 <p>URUGUAY: <span id="uruguay">----</span></p>
-
-</div>
-
-
-<div class="panel">
-
-<button onclick="generarTabla()">GENERAR TABLA</button>
-
-<br>
-
-<textarea id="tablaGenerada" rows="8"></textarea>
-
-<br>
-
-<button onclick="copiar()">COPIAR RESULTADOS</button>
 
 </div>
 
@@ -275,33 +292,7 @@ document.getElementById(lugar).innerText=valor;
 
 }
 
-function generarTabla(){
-
-let texto="RESULTADOS DEL DIA\n\n";
-
-for(let lugar in resultados){
-
-texto+=lugar.toUpperCase()+" "+resultados[lugar]+"\n";
-
-}
-
-document.getElementById("tablaGenerada").value=texto;
-
-}
-
-function copiar(){
-
-let texto=document.getElementById("tablaGenerada");
-
-texto.select();
-
-document.execCommand("copy");
-
-alert("COPIADO");
-
-}
-
 </script>
 
 </body>
-</html>
+  </html>
