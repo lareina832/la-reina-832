@@ -20,80 +20,49 @@ background-attachment:fixed;
 
 h1{
 font-size:40px;
-margin-top:30px;
+margin-top:25px;
 text-shadow:2px 2px 10px black;
 }
 
 .panel{
-
 background:rgba(0,0,0,0.65);
-
 padding:25px;
-
 margin:20px auto;
-
 width:90%;
-
-max-width:600px;
-
+max-width:650px;
 border-radius:15px;
-
 }
 
 .numero{
-
 font-size:70px;
-
 color:#ff4da6;
-
 font-weight:bold;
-
 margin:20px;
-
 }
 
 input{
-
-padding:12px;
-
-width:80%;
-
-font-size:18px;
-
+padding:14px;
+width:85%;
+font-size:22px;
 text-align:center;
-
 text-transform:uppercase;
-
 }
 
 button{
-
 background:#ff4da6;
-
 border:none;
-
 color:white;
-
-padding:12px 20px;
-
+padding:14px 25px;
 margin-top:10px;
-
-font-size:18px;
-
-border-radius:8px;
-
+font-size:20px;
+border-radius:10px;
 cursor:pointer;
-
 }
 
 textarea{
-
 width:95%;
-
 margin-top:15px;
-
 font-size:18px;
-
 }
 
 </style>
@@ -105,11 +74,27 @@ font-size:18px;
 
 <div class="panel">
 
+<h2>🔮 GENERADOR DE NÚMEROS</h2>
+
+<input id="palabra" placeholder="ESCRIBE UNA PALABRA">
+
+<br>
+
+<button onclick="generar()">GENERAR</button>
+
+<div id="resultado" class="numero">----</div>
+
+</div>
+
+
+<div class="panel">
+
 <h2>🔥 NÚMERO CALIENTE</h2>
 
 <div id="numeroCaliente" class="numero">----</div>
 
 </div>
+
 
 <div class="panel">
 
@@ -124,6 +109,7 @@ font-size:18px;
 
 </div>
 
+
 <div class="panel">
 
 <button onclick="generarTabla()">GENERAR TABLA</button>
@@ -136,22 +122,26 @@ font-size:18px;
 
 <button onclick="copiar()">COPIAR RESULTADOS</button>
 
+</div>
+
+
 <div class="panel">
 
 <h2>💰 JUGAR AHORA</h2>
 
-<p>Enviá tu jugada directo por WhatsApp</p>
-
 <a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar%20en%20LA%20REINA%20832" target="_blank">
 
-<button style="font-size:22px;padding:15px 30px;background:#25D366;">
+<button style="background:#25D366;font-size:22px;">
 📲 JUGAR POR WHATSAPP
 </button>
 
 </a>
 
 </div>
+
+
 <button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
+
 
 <div id="panelAdmin" class="panel" style="display:none">
 
@@ -212,9 +202,7 @@ let numeroCaliente = localStorage.getItem("numeroCaliente") || "";
 let resultados = JSON.parse(localStorage.getItem("resultados")) || {};
 
 if(numeroCaliente){
-
 document.getElementById("numeroCaliente").innerText = numeroCaliente;
-
 }
 
 for(let lugar in resultados){
@@ -222,10 +210,28 @@ for(let lugar in resultados){
 let el=document.getElementById(lugar);
 
 if(el){
-
 el.innerText=resultados[lugar];
+}
 
 }
+
+function generar(){
+
+let palabra=document.getElementById("palabra").value.toUpperCase();
+
+document.getElementById("palabra").value=palabra;
+
+let suma=0;
+
+for(let i=0;i<palabra.length;i++){
+
+suma+=palabra.charCodeAt(i);
+
+}
+
+let numero=(suma*832)%10000;
+
+document.getElementById("resultado").innerText=numero;
 
 }
 
@@ -298,4 +304,4 @@ alert("COPIADO");
 </script>
 
 </body>
-                                              </html>
+</html>
