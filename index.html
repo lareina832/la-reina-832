@@ -1,82 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<title>LA REINA 832 VIP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LA REINA 832</title>
 
 <style>
 
 body{
+
 margin:0;
-font-family:Arial, sans-serif;
-background-image:url('https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg');
+font-family:Arial;
+color:white;
+text-align:center;
+
+background-image:url("https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg");
 background-size:cover;
 background-position:center;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-color:white;
+background-attachment:fixed;
+
 }
 
-.panel{
-background:rgba(0,0,0,0.75);
-padding:40px;
-border-radius:20px;
-text-align:center;
-width:90%;
-max-width:500px;
-box-shadow:0 0 25px #ff00cc;
+.capa{
+
+background:rgba(0,0,0,0.65);
+min-height:100vh;
+padding:30px;
+
 }
 
 h1{
-color:#ff00cc;
-text-shadow:0 0 20px #ff00cc;
+
+font-size:60px;
+color:#ff2ec4;
+text-shadow:0 0 25px #ff00cc;
+
+}
+
+.mensaje{
+
+font-size:20px;
+margin:25px;
+
 }
 
 input{
-padding:12px;
-width:80%;
+
+padding:18px;
+font-size:24px;
+border-radius:12px;
 border:none;
-border-radius:10px;
-margin-top:10px;
+width:80%;
+max-width:350px;
+
 }
 
 button{
-margin-top:15px;
-padding:12px 25px;
+
+padding:15px 30px;
+font-size:20px;
 border:none;
-border-radius:10px;
-background:#ff00cc;
-color:white;
-font-weight:bold;
+border-radius:12px;
+margin:10px;
 cursor:pointer;
+
+}
+
+.boton{
+
+background:#ff2ec4;
+color:white;
+
 }
 
 .resultado{
-margin-top:20px;
-font-size:26px;
-color:#00ffcc;
+
+font-size:55px;
+margin:25px;
+font-weight:bold;
+animation:brillo 1s infinite alternate;
+
+}
+
+@keyframes brillo{
+
+from{ text-shadow:0 0 10px #fff;}
+to{ text-shadow:0 0 30px #ff00cc;}
+
+}
+
+.favoritos{
+
+margin-top:30px;
+
+}
+
+.numero{
+
+display:inline-block;
+background:#ff2ec4;
+padding:18px 28px;
+margin:10px;
+border-radius:15px;
+font-size:35px;
+box-shadow:0 0 15px black;
+
+}
+
+.caliente{
+
+background:gold;
+color:black;
+font-size:40px;
+
+}
+
+.whatsapp{
+
+background:#25D366;
+color:white;
+font-size:22px;
+
+}
+
+#admin{
+
+display:none;
+margin-top:40px;
+
+}
+
+textarea{
+
+width:90%;
+height:120px;
+font-size:20px;
+border-radius:10px;
+padding:10px;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="panel">
+<div class="capa">
 
-<h1>👑 LA REINA 832 VIP 👑</h1>
+<h1>👑 LA REINA 832 👑</h1>
 
-<p>Ingresá una palabra y descubrí tu número estratégico</p>
+<div class="mensaje">
 
-<input id="palabra" placeholder="Ej: REINA">
+💰✨ DECRETO DE ABUNDANCIA ✨💰  
+Hoy la suerte camina conmigo.  
+Hoy el dinero fluye hacia mí.  
+Hoy los números se alinean a mi favor.  
+Confío. Juego. Gano. 🍀
+
+</div>
 
 <br>
 
-<button onclick="generar()">GENERAR NÚMERO</button>
+<input id="palabra" placeholder="Escribe una palabra">
 
-<div class="resultado" id="resultado"></div>
+<br>
+
+<button class="boton" onclick="generar()">GENERAR NÚMERO</button>
+
+<div id="resultado" class="resultado"></div>
+
+<h2>🔥 NÚMERO CALIENTE DEL DÍA 🔥</h2>
+
+<div class="numero caliente" id="caliente"></div>
+
+<div class="favoritos">
+
+<h2>⭐ FAVORITOS DE LA REINA ⭐</h2>
+
+<div id="listaFavoritos">
+
+<div class="numero">12</div>
+<div class="numero">33</div>
+<div class="numero">70</div>
+<div class="numero">88</div>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="whatsapp" onclick="window.open('https://wa.me/5493517682897')">
+💬 JUGAR POR WHATSAPP
+</button>
+
+<br><br>
+
+<button onclick="panel()">Panel secreto</button>
+
+<div id="admin">
+
+<h3>Editar favoritos</h3>
+
+<textarea id="favEdit">
+
+12
+33
+70
+88
+
+</textarea>
+
+<br>
+
+<button onclick="guardar()">Guardar</button>
+
+</div>
 
 </div>
 
@@ -84,18 +227,68 @@ color:#00ffcc;
 
 function generar(){
 
-let palabra = document.getElementById("palabra").value.toUpperCase();
+let palabra=document.getElementById("palabra").value
 
-if(palabra=="REINA"){
-document.getElementById("resultado").innerHTML="✨ REINA = 1832 ✨";
+let numero=0
+
+for(let i=0;i<palabra.length;i++){
+
+numero+=palabra.charCodeAt(i)
+
 }
-else{
-document.getElementById("resultado").innerHTML="Número estratégico: "+Math.floor(Math.random()*9999);
+
+numero=numero%10000
+
+document.getElementById("resultado").innerHTML=numero
+
 }
+
+function numeroCaliente(){
+
+let n=Math.floor(Math.random()*100)
+
+document.getElementById("caliente").innerHTML=n
+
+}
+
+numeroCaliente()
+
+function panel(){
+
+let clave=prompt("Clave admin")
+
+if(clave==="832"){
+
+document.getElementById("admin").style.display="block"
+
+}else{
+
+alert("Clave incorrecta")
+
+}
+
+}
+
+function guardar(){
+
+let texto=document.getElementById("favEdit").value
+
+let lista=texto.split("\n")
+
+let html=""
+
+lista.forEach(n=>{
+
+html+=`<div class="numero">${n}</div>`
+
+})
+
+document.getElementById("listaFavoritos").innerHTML=html
 
 }
 
 </script>
 
 </body>
-</html>
+
+  </html>
