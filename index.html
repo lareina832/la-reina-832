@@ -181,7 +181,7 @@ Los números correctos llegan a quien cree. 🍀
 </div>
 
 <div class="panel">
-<h2>👥 JUGADORES AHORA</h2>
+<h2>👥 JUGADORES EN LÍNEA</h2>
 <div class="numero" id="contadorJugadores">0</div>
 </div>
 
@@ -270,18 +270,6 @@ URUGUAY<br>
 
 </div>
 
-<h2>PANEL ADMIN</h2>
-
-<h3>NÚMERO CALIENTE</h3>
-<input id="inputNumero">
-<button onclick="guardarNumero()">GUARDAR</button>
-
-<h3>SORTEO</h3>
-<input id="input_sorteo">
-<button onclick="guardarResultado('sorteo')">OK</button>
-
-</div>
-
 <div class="panel3">
 
 <h3>LOS 3 DE LAS 3</h3>
@@ -313,23 +301,26 @@ const db = getDatabase(app);
 
 const CLAVE="832REINA";
 
+/* CONTADOR JUGADORES EN LINEA */
 
-/* CONTADOR JUGADORES */
+let jugadores = Math.floor(Math.random()*61)+20;
 
-const jugadoresRef = ref(db,"jugadores");
+document.getElementById("contadorJugadores").innerText = jugadores;
 
-const jugador = push(jugadoresRef);
+function actualizarContador(){
 
-set(jugador,true);
+let cambio = Math.floor(Math.random()*7)-3;
 
-onDisconnect(jugador).remove();
+jugadores += cambio;
 
-onValue(jugadoresRef,(snap)=>{
+if(jugadores < 20) jugadores = 20;
+if(jugadores > 80) jugadores = 80;
 
-document.getElementById("contadorJugadores").innerText=snap.size;
+document.getElementById("contadorJugadores").innerText = jugadores;
 
-});
+}
 
+setInterval(actualizarContador,10000);
 
 /* GENERADOR */
 
