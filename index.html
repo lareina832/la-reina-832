@@ -58,61 +58,46 @@ font-size:32px;
 font-weight:bold;
 }
 
-input{
-padding:14px;
-width:85%;
-font-size:22px;
-text-align:center;
-text-transform:uppercase;
-}
+/* 🔥 NUEVO DISEÑO RESULTADOS */
 
-button{
-background:#ff4da6;
-border:none;
+.resultadosPro{
+background-image:url("https://i.postimg.cc/ZqPN4WkH/file-000000005c5c720e8fe56cc0b59e7576.png");
+background-size:cover;
+background-position:center;
 color:white;
-padding:14px 25px;
-margin-top:10px;
-font-size:20px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 25px #ff4da6;
+}
+
+.headerResultados{
+text-align:center;
+margin-bottom:20px;
+}
+
+.tituloSorteo{
+font-size:28px;
+font-weight:bold;
+}
+
+.fechaSorteo{
+font-size:18px;
+}
+
+.tablaResultados{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.fila{
+display:flex;
+justify-content:space-between;
+background:rgba(0,0,0,0.5);
+padding:10px;
 border-radius:10px;
-cursor:pointer;
-}
-
-.mensaje{
-font-size:22px;
+font-size:20px;
 font-weight:bold;
-color:#ffd700;
-text-shadow:0 0 10px black;
-}
-
-.panel3{
-position:fixed;
-right:20px;
-top:35%;
-background:rgba(0,0,0,0.65);
-border:2px solid #ff4da6;
-border-radius:15px;
-padding:15px;
-box-shadow:0 0 40px #ff4da6;
-animation:brilloReina 2s infinite alternate;
-}
-
-.numero3{
-font-size:34px;
-font-weight:bold;
-color:#ffd700;
-margin:5px;
-animation:latido 1.5s infinite;
-}
-
-@keyframes brilloReina{
-0%{box-shadow:0 0 10px #ff4da6;}
-100%{box-shadow:0 0 40px #ff4da6;}
-}
-
-@keyframes latido{
-0%{transform:scale(1);}
-50%{transform:scale(1.15);}
-100%{transform:scale(1);}
 }
 
 </style>
@@ -154,29 +139,35 @@ Los números correctos llegan a quien cree. 🍀
 <h2>💰 JUGAR AHORA</h2>
 
 <a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar%20en%20LA%20REINA%20832" target="_blank">
-
 <button style="background:#25D366;font-size:22px;">
 📲 JUGAR POR WHATSAPP
 </button>
-
 </a>
 
 </div>
 
-<div class="panel">
+<!-- 🔥 NUEVA SECCIÓN RESULTADOS PRO -->
 
-<h2>📊 RESULTADOS DEL DÍA</h2>
+<div class="panel resultadosPro">
 
-<p class="resultadoGrande">SORTEO: <span id="sorteo">----</span></p>
-<p class="resultadoGrande">CIUDAD: <span id="ciudad">----</span></p>
-<p class="resultadoGrande">PROVINCIA: <span id="provincia">----</span></p>
-<p class="resultadoGrande">CÓRDOBA: <span id="cordoba">----</span></p>
-<p class="resultadoGrande">SANTA FE: <span id="santafe">----</span></p>
-<p class="resultadoGrande">ENTRE RÍOS: <span id="entrerios">----</span></p>
-<p class="resultadoGrande">CORRIENTES: <span id="corrientes">----</span></p>
-<p class="resultadoGrande">MENDOZA: <span id="mendoza">----</span></p>
-<p class="resultadoGrande">CHACO: <span id="chaco">----</span></p>
-<p class="resultadoGrande">URUGUAY: <span id="uruguay">----</span></p>
+<div class="headerResultados">
+<div id="sorteo" class="tituloSorteo">----</div>
+<div id="fecha" class="fechaSorteo">----</div>
+</div>
+
+<div class="tablaResultados">
+
+<div class="fila"><span>CIUDAD</span><span id="ciudad">----</span></div>
+<div class="fila"><span>PROVINCIA</span><span id="provincia">----</span></div>
+<div class="fila"><span>SANTA FE</span><span id="santafe">----</span></div>
+<div class="fila"><span>CÓRDOBA</span><span id="cordoba">----</span></div>
+<div class="fila"><span>ENTRE RÍOS</span><span id="entrerios">----</span></div>
+<div class="fila"><span>URUGUAY</span><span id="uruguay">----</span></div>
+<div class="fila"><span>CORRIENTES</span><span id="corrientes">----</span></div>
+<div class="fila"><span>MENDOZA</span><span id="mendoza">----</span></div>
+<div class="fila"><span>CHACO</span><span id="chaco">----</span></div>
+
+</div>
 
 </div>
 
@@ -185,106 +176,10 @@ Los números correctos llegan a quien cree. 🍀
 <div class="numero" id="contadorJugadores">0</div>
 </div>
 
-<button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
-
-<div id="panelAdmin" class="panel" style="display:none">
-
-<h2>PANEL ADMIN</h2>
-
-<h3>NÚMERO CALIENTE</h3>
-<input id="inputNumero">
-<button onclick="guardarNumero()">GUARDAR</button>
-
-<h3>SORTEO</h3>
-<input id="input_sorteo">
-<button onclick="guardarResultado('sorteo')">OK</button>
-
-<h3>RESULTADOS</h3>
-
-CIUDAD<br>
-<input id="input_ciudad">
-<button onclick="guardarResultado('ciudad')">OK</button>
-
-<br><br>
-
-PROVINCIA<br>
-<input id="input_provincia">
-<button onclick="guardarResultado('provincia')">OK</button>
-
-<br><br>
-
-CÓRDOBA<br>
-<input id="input_cordoba">
-<button onclick="guardarResultado('cordoba')">OK</button>
-
-<br><br>
-
-SANTA FE<br>
-<input id="input_santafe">
-<button onclick="guardarResultado('santafe')">OK</button>
-
-<br><br>
-
-ENTRE RÍOS<br>
-<input id="input_entrerios">
-<button onclick="guardarResultado('entrerios')">OK</button>
-
-<br><br>
-
-CORRIENTES<br>
-<input id="input_corrientes">
-<button onclick="guardarResultado('corrientes')">OK</button>
-
-<br><br>
-
-MENDOZA<br>
-<input id="input_mendoza">
-<button onclick="guardarResultado('mendoza')">OK</button>
-
-<br><br>
-
-CHACO<br>
-<input id="input_chaco">
-<button onclick="guardarResultado('chaco')">OK</button>
-
-<br><br>
-
-URUGUAY<br>
-<input id="input_uruguay">
-<button onclick="guardarResultado('uruguay')">OK</button>
-
-<h3>LOS 3 DE LAS 3</h3>
-
-<input id="input_tres1">
-<button onclick="guardar3('tres1')">OK</button>
-
-<br><br>
-
-<input id="input_tres2">
-<button onclick="guardar3('tres2')">OK</button>
-
-<br><br>
-
-<input id="input_tres3">
-<button onclick="guardar3('tres3')">OK</button>
-
-</div>
-
-<div class="panel3">
-
-<h3>LOS 3 DE LAS 3</h3>
-
-<div id="tres1" class="numero3">000</div>
-<div id="tres2" class="numero3">000</div>
-<div id="tres3" class="numero3">000</div>
-
-</div>
-
-
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set, onValue, push, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyDk5iVgJcWKFwqTj8s7nMDnPw99iXHEaRg",
@@ -299,140 +194,33 @@ appId: "1:615694841996:web:f07180082e8cda56b123a9"
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const CLAVE="832REINA";
-
-/* CONTADOR JUGADORES EN LINEA */
-
-let jugadores = Math.floor(Math.random()*61)+20;
-
-document.getElementById("contadorJugadores").innerText = jugadores;
-
-function actualizarContador(){
-
-let cambio = Math.floor(Math.random()*7)-3;
-
-jugadores += cambio;
-
-if(jugadores < 20) jugadores = 20;
-if(jugadores > 80) jugadores = 80;
-
-document.getElementById("contadorJugadores").innerText = jugadores;
-
-}
-
-setInterval(actualizarContador,10000);
-
-/* GENERADOR */
-
-window.generar=function(){
-
-let palabra=document.getElementById("palabra").value.toUpperCase();
-
-let suma=0;
-
-for(let i=0;i<palabra.length;i++){
-suma+=palabra.charCodeAt(i);
-}
-
-let numero=(suma*832)%10000;
-
-document.getElementById("resultado").innerText=numero;
-
-};
-
-
-/* PANEL */
-
-window.abrirPanel=function(){
-
-let clave=prompt("INGRESA CLAVE ADMIN");
-
-if(clave===CLAVE){
-document.getElementById("panelAdmin").style.display="block";
-}else{
-alert("CLAVE INCORRECTA");
-}
-
-};
-
-
-/* NUMERO CALIENTE */
-
-window.guardarNumero=function(){
-
-let num=document.getElementById("inputNumero").value;
-
-set(ref(db,"numeroCaliente"),num);
-
-};
-
-onValue(ref(db,"numeroCaliente"),(snap)=>{
-
-if(snap.exists()){
-document.getElementById("numeroCaliente").innerText=snap.val();
-}
-
-});
-
-
-/* RESULTADOS */
-
-window.guardarResultado=function(lugar){
-
-let valor=document.getElementById("input_"+lugar).value;
-
-set(ref(db,"resultados/"+lugar),valor);
-
-};
+/* RESULTADOS EN VIVO */
 
 onValue(ref(db,"resultados"),(snap)=>{
 
 let data=snap.val();
-
 if(!data)return;
 
 for(let lugar in data){
-
 let el=document.getElementById(lugar);
-
 if(el){
 el.innerText=data[lugar];
 }
-
 }
 
 });
 
+/* CONTADOR FAKE */
 
-/* LOS 3 DE LAS 3 */
-
-window.guardar3=function(id){
-
-let valor=document.getElementById("input_"+id).value;
-
-set(ref(db,"tres/"+id),valor);
-
-};
-
-onValue(ref(db,"tres"),(snap)=>{
-
-let data=snap.val();
-
-if(!data)return;
-
-for(let id in data){
-
-let el=document.getElementById(id);
-
-if(el){
-el.innerText=data[id];
+function randomJugadores(){
+let num=Math.floor(Math.random()*(80-20+1))+20;
+document.getElementById("contadorJugadores").innerText=num;
 }
 
-}
-
-});
+setInterval(randomJugadores,10000);
+randomJugadores();
 
 </script>
 
 </body>
-</html>
+  </html>
