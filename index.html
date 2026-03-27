@@ -5,88 +5,119 @@
 <title>LA REINA 832</title>
 
 <style>
-
 body{
-font-family: Arial;
-text-align:center;
-color:white;
-margin:0;
-background-image:url("https://raw.githubusercontent.com/lareina832/la-reina-832/main/Polish_20260304_093055926.jpg");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  color:white;
+  margin:0;
+  background:#000;
 }
 
+/* TITULO */
 h1{
-font-size:40px;
-margin-top:25px;
-text-shadow:2px 2px 10px black;
+  font-size:38px;
+  margin:20px 0;
+  color:#ff4da6;
+  text-shadow:0 0 10px #000;
 }
 
+/* PANEL */
 .panel{
-background:rgba(0,0,0,0.65);
-padding:25px;
-margin:20px auto;
-width:90%;
-max-width:650px;
-border-radius:15px;
-box-shadow:0 0 15px #ff4da6;
+  background:rgba(0,0,0,0.8);
+  padding:18px;
+  margin:14px auto;
+  width:92%;
+  max-width:650px;
+  border-radius:15px;
+  box-shadow:0 0 12px rgba(255,77,166,.35);
 }
 
+/* INPUTS/BOTONES */
+input{
+  padding:10px;
+  margin:6px;
+  width:85%;
+  max-width:360px;
+  border-radius:8px;
+  border:none;
+  text-align:center;
+}
+button{
+  padding:10px 14px;
+  margin:6px;
+  background:#ff4da6;
+  border:none;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* NUMEROS */
 .numero{
-font-size:70px;
-color:#ff4da6;
-font-weight:bold;
-margin:20px;
+  font-size:60px;
+  color:#ff4da6;
+  font-weight:bold;
+  margin-top:10px;
 }
 
-/* RESULTADOS PRO */
-
-.resultadosPro{
-background:linear-gradient(180deg,#2b0033,#000);
-padding:20px;
-border-radius:20px;
-position:relative;
-overflow:hidden;
+/* RESULTADOS */
+.resultados{
+  position:relative;
+  background:linear-gradient(180deg,#1a001f,#000);
+  padding:18px;
+  border-radius:20px;
+  overflow:hidden;
 }
 
-.resultadosPro::before{
-content:"LA REINA 832";
-position:absolute;
-top:45%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:60px;
-color:rgba(255,255,255,0.06);
-font-weight:bold;
-pointer-events:none;
-text-align:center;
-white-space:nowrap;
+/* MARCA DE AGUA */
+.resultados::before{
+  content:"LA REINA 832";
+  position:absolute;
+  top:45%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:48px;
+  color:rgba(255,255,255,0.05);
+  font-weight:bold;
+  pointer-events:none;
+  white-space:nowrap;
+}
+.resultados::after{
+  content:"JUGÁ DESDE CASA";
+  position:absolute;
+  top:62%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:14px;
+  letter-spacing:2px;
+  color:rgba(255,255,255,0.25);
+  font-weight:bold;
+  pointer-events:none;
 }
 
-/* TEXTO ABAJO */
-.resultadosPro::after{
-content:"JUGÁ DESDE CASA";
-position:absolute;
-top:60%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:18px;
-color:rgba(255,255,255,0.25);
-font-weight:bold;
-pointer-events:none;
-letter-spacing:2px;
+/* HEADER RESULTADOS */
+.headerRes{
+  margin-bottom:10px;
+}
+.tituloRes{
+  font-size:26px;
+  color:#ffd700;
+  font-weight:bold;
+}
+.fechaRes{
+  font-size:16px;
+  opacity:.9;
 }
 
+/* FILAS */
 .fila{
-display:flex;
-justify-content:space-between;
-padding:12px;
-border-radius:12px;
-margin:5px 0;
-font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  font-weight:bold;
 }
-
 .fila:nth-child(1){background:#ff4da6;}
 .fila:nth-child(2){background:#9b59b6;}
 .fila:nth-child(3){background:#3498db;}
@@ -97,20 +128,28 @@ font-weight:bold;
 .fila:nth-child(8){background:#2ecc71;}
 .fila:nth-child(9){background:#ff1493;}
 
+/* PANEL 3 DE LAS 3 */
 .panel3{
-position:fixed;
-right:20px;
-top:35%;
-background:rgba(0,0,0,0.65);
-border-radius:15px;
-padding:15px;
+  position:fixed;
+  right:10px;
+  top:30%;
+  background:#000;
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(255,77,166,.5);
 }
-
 .numero3{
-font-size:30px;
-color:#ffd700;
+  color:#ffd700;
+  font-size:26px;
+  font-weight:bold;
 }
 
+/* BOTON ADMIN */
+.btn-admin{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+}
 </style>
 </head>
 
@@ -119,111 +158,162 @@ color:#ffd700;
 <h1>👑 LA REINA 832 👑</h1>
 
 <div class="panel">
-<h2>🔮 GENERADOR</h2>
-<input id="palabra">
-<button onclick="generar()">GENERAR</button>
-<div id="resultado" class="numero">----</div>
+  <h3>🔮 GENERADOR</h3>
+  <input id="palabra" placeholder="ESCRIBE UNA PALABRA">
+  <br>
+  <button onclick="generar()">GENERAR</button>
+  <div id="resultado" class="numero">----</div>
 </div>
 
 <div class="panel">
-<h2>🔥 NÚMERO CALIENTE</h2>
-<div id="numeroCaliente" class="numero">----</div>
+  <h3>🔥 NÚMERO CALIENTE</h3>
+  <div id="numeroCaliente" class="numero">----</div>
 </div>
 
-<div class="panel resultadosPro">
+<div class="panel resultados">
+  <div class="headerRes">
+    <div id="sorteo" class="tituloRes">----</div>
+    <div id="fecha" class="fechaRes">----</div>
+  </div>
 
-<div id="sorteo"></div>
-<div id="fecha"></div>
-
-<div class="fila"><span>CIUDAD</span><span id="ciudad"></span></div>
-<div class="fila"><span>PROVINCIA</span><span id="provincia"></span></div>
-<div class="fila"><span>SANTA FE</span><span id="santafe"></span></div>
-<div class="fila"><span>CÓRDOBA</span><span id="cordoba"></span></div>
-<div class="fila"><span>ENTRE RÍOS</span><span id="entrerios"></span></div>
-<div class="fila"><span>URUGUAY</span><span id="uruguay"></span></div>
-<div class="fila"><span>CORRIENTES</span><span id="corrientes"></span></div>
-<div class="fila"><span>MENDOZA</span><span id="mendoza"></span></div>
-<div class="fila"><span>CHACO</span><span id="chaco"></span></div>
-
+  <div class="fila"><span>CIUDAD</span><span id="ciudad">----</span></div>
+  <div class="fila"><span>PROVINCIA</span><span id="provincia">----</span></div>
+  <div class="fila"><span>SANTA FE</span><span id="santafe">----</span></div>
+  <div class="fila"><span>CÓRDOBA</span><span id="cordoba">----</span></div>
+  <div class="fila"><span>ENTRE RÍOS</span><span id="entrerios">----</span></div>
+  <div class="fila"><span>URUGUAY</span><span id="uruguay">----</span></div>
+  <div class="fila"><span>CORRIENTES</span><span id="corrientes">----</span></div>
+  <div class="fila"><span>MENDOZA</span><span id="mendoza">----</span></div>
+  <div class="fila"><span>CHACO</span><span id="chaco">----</span></div>
 </div>
 
 <div class="panel">
-<h2>👥 JUGADORES EN LÍNEA</h2>
-<div id="contadorJugadores" class="numero"></div>
+  <h3>👥 JUGADORES EN LÍNEA</h3>
+  <div id="contadorJugadores" class="numero">0</div>
 </div>
 
-<button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
+<!-- BOTON ADMIN -->
+<button class="btn-admin" onclick="abrirPanel()">⚙</button>
 
+<!-- PANEL ADMIN -->
 <div id="panelAdmin" class="panel" style="display:none">
+  <h3>PANEL ADMIN</h3>
 
-<input id="inputNumero">
-<button onclick="guardarNumero()">Guardar número</button>
+  <input id="inputNumero" placeholder="Número caliente">
+  <button onclick="guardarNumero()">Guardar</button>
 
-<input id="input_cordoba">
-<button onclick="guardarResultado('cordoba')">Guardar Córdoba</button>
+  <input id="input_sorteo" placeholder="Sorteo">
+  <button onclick="guardarResultado('sorteo')">OK</button>
 
+  <input id="input_fecha" placeholder="Fecha">
+  <button onclick="guardarResultado('fecha')">OK</button>
+
+  <input id="input_ciudad" placeholder="Ciudad">
+  <button onclick="guardarResultado('ciudad')">OK</button>
+
+  <input id="input_provincia" placeholder="Provincia">
+  <button onclick="guardarResultado('provincia')">OK</button>
+
+  <input id="input_santafe" placeholder="Santa Fe">
+  <button onclick="guardarResultado('santafe')">OK</button>
+
+  <input id="input_cordoba" placeholder="Córdoba">
+  <button onclick="guardarResultado('cordoba')">OK</button>
+
+  <input id="input_entrerios" placeholder="Entre Ríos">
+  <button onclick="guardarResultado('entrerios')">OK</button>
+
+  <input id="input_uruguay" placeholder="Uruguay">
+  <button onclick="guardarResultado('uruguay')">OK</button>
+
+  <input id="input_corrientes" placeholder="Corrientes">
+  <button onclick="guardarResultado('corrientes')">OK</button>
+
+  <input id="input_mendoza" placeholder="Mendoza">
+  <button onclick="guardarResultado('mendoza')">OK</button>
+
+  <input id="input_chaco" placeholder="Chaco">
+  <button onclick="guardarResultado('chaco')">OK</button>
+
+  <br>
+  <button onclick="cerrarPanel()">❌ Cerrar</button>
 </div>
 
+<!-- 3 DE LAS 3 -->
 <div class="panel3">
-<div id="tres1" class="numero3">000</div>
-<div id="tres2" class="numero3">000</div>
-<div id="tres3" class="numero3">000</div>
+  <div id="tres1" class="numero3">000</div>
+  <div id="tres2" class="numero3">000</div>
+  <div id="tres3" class="numero3">000</div>
 </div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-const app = initializeApp({
-apiKey: "AIza...",
-databaseURL: "https://la-reina-832-default-rtdb.firebaseio.com"
-});
+const firebaseConfig = {
+  apiKey: "AIzaSyDk5iVgJcWKFwqTj8s7nMDnPw99iXHEaRg",
+  databaseURL: "https://la-reina-832-default-rtdb.firebaseio.com"
+};
 
+const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-onValue(ref(db,"resultados"),snap=>{
-let data=snap.val();
-for(let k in data){
-let el=document.getElementById(k);
-if(el) el.innerText=data[k];
-}
+/* RESULTADOS */
+onValue(ref(db,"resultados"), snap=>{
+  let d=snap.val();
+  if(!d) return;
+  for(let k in d){
+    let el=document.getElementById(k);
+    if(el) el.innerText=d[k];
+  }
 });
 
-onValue(ref(db,"numeroCaliente"),snap=>{
-document.getElementById("numeroCaliente").innerText=snap.val();
+/* NUMERO CALIENTE */
+onValue(ref(db,"numeroCaliente"), snap=>{
+  if(snap.exists()){
+    document.getElementById("numeroCaliente").innerText=snap.val();
+  }
 });
 
+/* GENERADOR */
 window.generar=function(){
-let p=document.getElementById("palabra").value;
-let suma=0;
-for(let i=0;i<p.length;i++) suma+=p.charCodeAt(i);
-document.getElementById("resultado").innerText=(suma*832)%10000;
+  let p=document.getElementById("palabra").value.toUpperCase();
+  let s=0;
+  for(let i=0;i<p.length;i++) s+=p.charCodeAt(i);
+  document.getElementById("resultado").innerText=(s*832)%10000;
+}
+
+/* PANEL ADMIN */
+const CLAVE="832REINA";
+
+window.abrirPanel=function(){
+  let clave=prompt("INGRESA CLAVE ADMIN");
+  if(clave===CLAVE){
+    document.getElementById("panelAdmin").style.display="block";
+  }else{
+    alert("❌ CLAVE INCORRECTA");
+  }
+}
+
+window.cerrarPanel=function(){
+  document.getElementById("panelAdmin").style.display="none";
 }
 
 window.guardarNumero=function(){
-set(ref(db,"numeroCaliente"),document.getElementById("inputNumero").value);
+  set(ref(db,"numeroCaliente"),document.getElementById("inputNumero").value);
 }
 
 window.guardarResultado=function(l){
-set(ref(db,"resultados/"+l),document.getElementById("input_"+l).value);
+  set(ref(db,"resultados/"+l),document.getElementById("input_"+l).value);
 }
 
-window.abrirPanel=function(){
-let c=prompt("CLAVE");
-if(c==="832REINA"){
-document.getElementById("panelAdmin").style.display="block";
-}
-}
-
+/* CONTADOR */
 function random(){
-document.getElementById("contadorJugadores").innerText=
-Math.floor(Math.random()*(80-20+1))+20;
+  document.getElementById("contadorJugadores").innerText=
+  Math.floor(Math.random()*(80-20+1))+20;
 }
-
 setInterval(random,10000);
 random();
-
 </script>
 
 </body>
