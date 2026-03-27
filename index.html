@@ -111,7 +111,60 @@ animation:latido 1.5s infinite;
 50%{transform:scale(1.15);}  
 100%{transform:scale(1);}  
 }  
-  
+  /* RESULTADOS PRO */
+.resultadosPro{
+position:relative;
+background:linear-gradient(180deg, rgba(20,0,30,0.85), rgba(0,0,0,0.9));
+border-radius:15px;
+padding:20px;
+overflow:hidden;
+}
+
+/* MARCA DE AGUA FUERTE */
+.resultadosPro::before{
+content:"LA REINA 832";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:90px;
+color:rgba(255,255,255,0.15);
+font-weight:bold;
+text-shadow:0 0 40px #ff4da6;
+pointer-events:none;
+}
+
+.resultadosPro::after{
+content:"JUGÁ DESDE CASA";
+position:absolute;
+top:70%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:22px;
+color:rgba(255,255,255,0.35);
+font-weight:bold;
+pointer-events:none;
+}
+
+/* FILAS DE COLORES */
+.fila{
+display:flex;
+justify-content:space-between;
+padding:10px;
+margin:6px 0;
+border-radius:10px;
+font-weight:bold;
+}
+
+.fila:nth-child(3){background:#ff4da6;}
+.fila:nth-child(4){background:#9b59b6;}
+.fila:nth-child(5){background:#3498db;}
+.fila:nth-child(6){background:#e67e22;}
+.fila:nth-child(7){background:#1abc9c;}
+.fila:nth-child(8){background:#e74c3c;}
+.fila:nth-child(9){background:#f1c40f;color:black;}
+.fila:nth-child(10){background:#2ecc71;}
+.fila:nth-child(11){background:#ff1493;}
 </style>  </head>  <body>  <h1>👑 AGENCIA ONLINE LA REINA 832 👑</h1>  <div class="panel">  
 <div class="mensaje">  
 ✨ Hoy la suerte está de tu lado ✨    
@@ -223,7 +276,7 @@ const db = getDatabase(app);
 const CLAVE="832REINA";  
   
   
-/* CONTADOR JUGADORES */  
+/* CONTADOR JUGADORES FAKE*/  
   
 const jugadoresRef = ref(db,"jugadores");  
   
