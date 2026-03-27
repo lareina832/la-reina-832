@@ -31,12 +31,6 @@ width:90%;
 max-width:650px;
 border-radius:15px;
 box-shadow:0 0 15px #ff4da6;
-animation:brilloPanel 3s infinite alternate;
-}
-
-@keyframes brilloPanel{
-0%{box-shadow:0 0 10px #ff4da6;}
-100%{box-shadow:0 0 30px #ff4da6;}
 }
 
 .numero{
@@ -44,16 +38,9 @@ font-size:70px;
 color:#ff4da6;
 font-weight:bold;
 margin:20px;
-animation:brillo 2s infinite;
 }
 
-@keyframes brillo{
-0%{text-shadow:0 0 10px #ff4da6;}
-50%{text-shadow:0 0 35px #ff4da6;}
-100%{text-shadow:0 0 10px #ff4da6;}
-}
-
-/* 🔥 RESULTADOS PRO */
+/* RESULTADOS PRO */
 
 .resultadosPro{
 background:linear-gradient(180deg,#2b0033,#000);
@@ -72,28 +59,6 @@ transform:translate(-50%,-50%);
 font-size:60px;
 color:rgba(255,255,255,0.05);
 font-weight:bold;
-pointer-events:none;
-}
-
-.headerResultados{
-text-align:center;
-margin-bottom:20px;
-}
-
-.tituloSorteo{
-font-size:30px;
-font-weight:bold;
-color:#ffd700;
-}
-
-.fechaSorteo{
-font-size:18px;
-}
-
-.tablaResultados{
-display:flex;
-flex-direction:column;
-gap:10px;
 }
 
 .fila{
@@ -101,11 +66,9 @@ display:flex;
 justify-content:space-between;
 padding:12px;
 border-radius:12px;
-font-size:20px;
+margin:5px 0;
 font-weight:bold;
 }
-
-/* COLORES */
 
 .fila:nth-child(1){background:#ff4da6;}
 .fila:nth-child(2){background:#9b59b6;}
@@ -117,24 +80,30 @@ font-weight:bold;
 .fila:nth-child(8){background:#2ecc71;}
 .fila:nth-child(9){background:#ff1493;}
 
+.panel3{
+position:fixed;
+right:20px;
+top:35%;
+background:rgba(0,0,0,0.65);
+border-radius:15px;
+padding:15px;
+}
+
+.numero3{
+font-size:30px;
+color:#ffd700;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>👑 AGENCIA ONLINE LA REINA 832 👑</h1>
+<h1>👑 LA REINA 832 👑</h1>
 
 <div class="panel">
-<div class="mensaje">
-✨ Hoy la suerte está de tu lado ✨  
-Confía en tu intuición 🍀  
-</div>
-</div>
-
-<div class="panel">
-<h2>🔮 GENERADOR DE NÚMEROS</h2>
-<input id="palabra" placeholder="ESCRIBE UNA PALABRA">
-<br>
+<h2>🔮 GENERADOR</h2>
+<input id="palabra">
 <button onclick="generar()">GENERAR</button>
 <div id="resultado" class="numero">----</div>
 </div>
@@ -144,41 +113,44 @@ Confía en tu intuición 🍀
 <div id="numeroCaliente" class="numero">----</div>
 </div>
 
-<div class="panel">
-<h2>💰 JUGAR AHORA</h2>
-<a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar%20en%20LA%20REINA%20832" target="_blank">
-<button style="background:#25D366;font-size:22px;">
-📲 JUGAR POR WHATSAPP
-</button>
-</a>
-</div>
-
-<!-- RESULTADOS PRO -->
-
 <div class="panel resultadosPro">
 
-<div class="headerResultados">
-<div id="sorteo" class="tituloSorteo">----</div>
-<div id="fecha" class="fechaSorteo">----</div>
-</div>
+<div id="sorteo"></div>
+<div id="fecha"></div>
 
-<div class="tablaResultados">
-<div class="fila"><span>CIUDAD</span><span id="ciudad">----</span></div>
-<div class="fila"><span>PROVINCIA</span><span id="provincia">----</span></div>
-<div class="fila"><span>SANTA FE</span><span id="santafe">----</span></div>
-<div class="fila"><span>CÓRDOBA</span><span id="cordoba">----</span></div>
-<div class="fila"><span>ENTRE RÍOS</span><span id="entrerios">----</span></div>
-<div class="fila"><span>URUGUAY</span><span id="uruguay">----</span></div>
-<div class="fila"><span>CORRIENTES</span><span id="corrientes">----</span></div>
-<div class="fila"><span>MENDOZA</span><span id="mendoza">----</span></div>
-<div class="fila"><span>CHACO</span><span id="chaco">----</span></div>
-</div>
+<div class="fila"><span>CIUDAD</span><span id="ciudad"></span></div>
+<div class="fila"><span>PROVINCIA</span><span id="provincia"></span></div>
+<div class="fila"><span>SANTA FE</span><span id="santafe"></span></div>
+<div class="fila"><span>CÓRDOBA</span><span id="cordoba"></span></div>
+<div class="fila"><span>ENTRE RÍOS</span><span id="entrerios"></span></div>
+<div class="fila"><span>URUGUAY</span><span id="uruguay"></span></div>
+<div class="fila"><span>CORRIENTES</span><span id="corrientes"></span></div>
+<div class="fila"><span>MENDOZA</span><span id="mendoza"></span></div>
+<div class="fila"><span>CHACO</span><span id="chaco"></span></div>
 
 </div>
 
 <div class="panel">
 <h2>👥 JUGADORES EN LÍNEA</h2>
-<div class="numero" id="contadorJugadores">0</div>
+<div id="contadorJugadores" class="numero"></div>
+</div>
+
+<button onclick="abrirPanel()">⚙ PANEL ADMIN</button>
+
+<div id="panelAdmin" class="panel" style="display:none">
+
+<input id="inputNumero">
+<button onclick="guardarNumero()">Guardar número</button>
+
+<input id="input_cordoba">
+<button onclick="guardarResultado('cordoba')">Guardar Córdoba</button>
+
+</div>
+
+<div class="panel3">
+<div id="tres1" class="numero3">000</div>
+<div id="tres2" class="numero3">000</div>
+<div id="tres3" class="numero3">000</div>
 </div>
 
 <script type="module">
@@ -186,75 +158,56 @@ Confía en tu intuición 🍀
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-const firebaseConfig = {
-apiKey: "AIzaSyDk5iVgJcWKFwqTj8s7nMDnPw99iXHEaRg",
-authDomain: "la-reina-832.firebaseapp.com",
-databaseURL: "https://la-reina-832-default-rtdb.firebaseio.com",
-projectId: "la-reina-832",
-storageBucket: "la-reina-832.firebasestorage.app",
-messagingSenderId: "615694841996",
-appId: "1:615694841996:web:f07180082e8cda56b123a9"
-};
+const app = initializeApp({
+apiKey: "AIza...",
+databaseURL: "https://la-reina-832-default-rtdb.firebaseio.com"
+});
 
-const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* RESULTADOS EN VIVO */
-
-onValue(ref(db,"resultados"),(snap)=>{
+onValue(ref(db,"resultados"),snap=>{
 let data=snap.val();
-if(!data)return;
-for(let lugar in data){
-let el=document.getElementById(lugar);
-if(el){
-el.innerText=data[lugar];
-}
+for(let k in data){
+let el=document.getElementById(k);
+if(el) el.innerText=data[k];
 }
 });
 
-/* NUMERO CALIENTE */
-
-onValue(ref(db,"numeroCaliente"),(snap)=>{
-if(snap.exists()){
+onValue(ref(db,"numeroCaliente"),snap=>{
 document.getElementById("numeroCaliente").innerText=snap.val();
-}
 });
-
-/* GENERADOR */
 
 window.generar=function(){
-let palabra=document.getElementById("palabra").value.toUpperCase();
+let p=document.getElementById("palabra").value;
 let suma=0;
-for(let i=0;i<palabra.length;i++){
-suma+=palabra.charCodeAt(i);
-}
-let numero=(suma*832)%10000;
-document.getElementById("resultado").innerText=numero;
-};
-
-/* CONTADOR DINÁMICO */
-
-function randomJugadores(){
-let num=Math.floor(Math.random()*(80-20+1))+20;
-document.getElementById("contadorJugadores").innerText=num;
+for(let i=0;i<p.length;i++) suma+=p.charCodeAt(i);
+document.getElementById("resultado").innerText=(suma*832)%10000;
 }
 
-setInterval(randomJugadores,10000);
-randomJugadores();
+window.guardarNumero=function(){
+set(ref(db,"numeroCaliente"),document.getElementById("inputNumero").value);
+}
+
+window.guardarResultado=function(l){
+set(ref(db,"resultados/"+l),document.getElementById("input_"+l).value);
+}
+
+window.abrirPanel=function(){
+let c=prompt("CLAVE");
+if(c==="832REINA"){
+document.getElementById("panelAdmin").style.display="block";
+}
+}
+
+function random(){
+document.getElementById("contadorJugadores").innerText=
+Math.floor(Math.random()*(80-20+1))+20;
+}
+
+setInterval(random,10000);
+random();
 
 </script>
 
 </body>
-</html>
-💥 LISTO
-👉 Pegás
-👉 Guardás en GitHub
-👉 Esperás 1 minuto
-👉 Actualizás tu web
-🎯 RESULTADO
-✔ Todo lo anterior funcionando
-✔ Resultados con colores distintos
-✔ Marca de agua 👑
-✔ Editable desde Firebase
-✔ Estética mucho más pro
-Si querés el próximo paso te lo dejo nivel casino real con animaciones y brillo en los números 🔥
+  </html>
