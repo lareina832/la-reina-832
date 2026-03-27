@@ -53,12 +53,29 @@ overflow:hidden;
 .resultadosPro::before{
 content:"LA REINA 832";
 position:absolute;
-top:50%;
+top:45%;
 left:50%;
 transform:translate(-50%,-50%);
 font-size:60px;
-color:rgba(255,255,255,0.05);
+color:rgba(255,255,255,0.06);
 font-weight:bold;
+pointer-events:none;
+text-align:center;
+white-space:nowrap;
+}
+
+/* TEXTO ABAJO */
+.resultadosPro::after{
+content:"JUGÁ DESDE CASA";
+position:absolute;
+top:60%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:18px;
+color:rgba(255,255,255,0.25);
+font-weight:bold;
+pointer-events:none;
+letter-spacing:2px;
 }
 
 .fila{
