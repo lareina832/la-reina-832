@@ -353,6 +353,17 @@ window.guardarResultado=function(lugar){
 let valor=document.getElementById("input_"+lugar).value;  
   
 set(ref(db,"resultados/"+lugar),valor);  
+
+  if(!data) return;
+
+for(let key in data){
+let el=document.getElementById(key);
+if(el){
+el.innerText=data[key];
+}
+}
+
+});
   
 };  
   
