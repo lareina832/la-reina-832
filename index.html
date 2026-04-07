@@ -41,6 +41,14 @@ border-radius:8px;
 margin:5px 0;
 }
 
+#historial p{
+font-size:16px;
+background:rgba(255,255,255,0.05);
+padding:6px;
+border-radius:6px;
+margin:4px;
+}
+
 .girando{
 animation:spin 0.1s infinite;
 }
@@ -97,6 +105,11 @@ border:2px solid #ff4da6;
 <p>CHACO: <span id="chaco">----</span></p>
 <p>URUGUAY: <span id="uruguay">----</span></p>
 
+</div>
+
+<div class="panel">
+<h2>📊 HISTORIAL</h2>
+<div id="historial"></div>
 </div>
 
 <div class="panel">
@@ -158,6 +171,9 @@ border:2px solid #ff4da6;
 
 <input id="input_tres3">
 <button onclick="guardar3('tres3')">OK</button>
+
+<br><br>
+<button onclick="guardarEnHistorial()">💾 GUARDAR EN HISTORIAL</button>
 
 </div>
 
@@ -242,6 +258,33 @@ let v=document.getElementById("input_"+id).value;
 set(ref(db,"tres/"+id),v);
 };
 
+/* HISTORIAL */
+window.guardarEnHistorial=function(){
+
+let fecha = new Date().toLocaleString();
+
+let data = {
+fecha: fecha,
+cordoba: document.getElementById("cordoba").innerText
+};
+
+set(ref(db,"historial/"+Date.now()),data);
+
+};
+
+onValue(ref(db,"historial"),snap=>{
+let d=snap.val();
+if(!d)return;
+
+let cont="";
+for(let k in d){
+let h=d[k];
+cont += `<p>${h.fecha} | CBA: ${h.cordoba}</p>`;
+}
+
+document.getElementById("historial").innerHTML=cont;
+});
+
 /* LEER */
 onValue(ref(db,"numeroCaliente"),snap=>{
 if(snap.exists()){
@@ -272,4 +315,4 @@ if(el) el.innerText=d[k];
 </script>
 
 </body>
-                                    </html>
+  </html>
