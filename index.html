@@ -32,6 +32,15 @@ font-size:60px;
 color:#ff4da6;
 }
 
+.panel p{
+font-size:20px;
+font-weight:bold;
+background:rgba(255,255,255,0.05);
+padding:8px;
+border-radius:8px;
+margin:5px 0;
+}
+
 .girando{
 animation:spin 0.1s infinite;
 }
@@ -53,7 +62,6 @@ margin-top:10px;
 
 .admin{
 display:none;
-background:black;
 border:2px solid #ff4da6;
 }
 </style>
@@ -93,9 +101,9 @@ border:2px solid #ff4da6;
 
 <div class="panel">
 <h2>👑 LOS 3 DE LAS 3</h2>
-<div id="tres1">000</div>
-<div id="tres2">000</div>
-<div id="tres3">000</div>
+<div class="numero" id="tres1">000</div>
+<div class="numero" id="tres2">000</div>
+<div class="numero" id="tres3">000</div>
 </div>
 
 <div class="panel">
@@ -112,6 +120,7 @@ border:2px solid #ff4da6;
 <input id="inputNumero"><button onclick="guardarNumero()">OK</button>
 
 <h3>RESULTADOS</h3>
+
 <input id="input_ciudad" placeholder="Ciudad">
 <button onclick="guardarResultado('ciudad')">OK</button><br>
 
@@ -125,12 +134,30 @@ border:2px solid #ff4da6;
 <button onclick="guardarResultado('santafe')">OK</button><br>
 
 <input id="input_entrerios" placeholder="Entre Ríos">
-<button onclick="guardarResultado('entrerios')">OK</button>
+<button onclick="guardarResultado('entrerios')">OK</button><br>
+
+<input id="input_corrientes" placeholder="Corrientes">
+<button onclick="guardarResultado('corrientes')">OK</button><br>
+
+<input id="input_mendoza" placeholder="Mendoza">
+<button onclick="guardarResultado('mendoza')">OK</button><br>
+
+<input id="input_chaco" placeholder="Chaco">
+<button onclick="guardarResultado('chaco')">OK</button><br>
+
+<input id="input_uruguay" placeholder="Uruguay">
+<button onclick="guardarResultado('uruguay')">OK</button>
 
 <h3>LOS 3</h3>
-<input id="input_tres1"><button onclick="guardar3('tres1')">OK</button><br>
-<input id="input_tres2"><button onclick="guardar3('tres2')">OK</button><br>
-<input id="input_tres3"><button onclick="guardar3('tres3')">OK</button>
+
+<input id="input_tres1">
+<button onclick="guardar3('tres1')">OK</button><br>
+
+<input id="input_tres2">
+<button onclick="guardar3('tres2')">OK</button><br>
+
+<input id="input_tres3">
+<button onclick="guardar3('tres3')">OK</button>
 
 </div>
 
@@ -242,4 +269,4 @@ if(el) el.innerText=d[k];
 </script>
 
 </body>
-                                                             </html>
+  </html>
