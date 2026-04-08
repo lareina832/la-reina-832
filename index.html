@@ -6,15 +6,6 @@
 <title>LA REINA 832</title>
 
 <style>
-  <a href="https://wa.me/543517682897?text=🔥%20QUIERO%20JUGAR%20YA" target="_blank">
-<div class="whatsapp-pro">
-<span>📲</span>
-<div class="whatsapp-text">
-JUGÁ AHORA
-<small>Disponible 24hs</small>
-</div>
-</div>
-</a>
 body{
 margin:0;
 font-family:Arial;
@@ -23,52 +14,6 @@ color:white;
 text-align:center;
 }
 
-.whatsapp-pro{
-position:fixed;
-bottom:20px;
-right:20px;
-background:linear-gradient(45deg,#25D366,#1ebe5d);
-color:white;
-border-radius:50px;
-padding:12px 18px;
-display:flex;
-align-items:center;
-gap:10px;
-font-size:16px;
-font-weight:bold;
-box-shadow:0 0 20px #25D366, 0 0 40px rgba(37,211,102,0.5);
-cursor:pointer;
-z-index:999;
-animation:latido 1.5s infinite;
-transition:0.3s;
-}
-
-.whatsapp-pro:hover{
-transform:scale(1.1);
-box-shadow:0 0 30px #25D366, 0 0 60px rgba(37,211,102,0.8);
-}
-
-.whatsapp-pro span{
-font-size:22px;
-}
-
-.whatsapp-text{
-display:flex;
-flex-direction:column;
-line-height:1.1;
-}
-
-.whatsapp-text small{
-font-size:11px;
-opacity:0.8;
-}
-
-@keyframes latido{
-0%{transform:scale(1);}
-50%{transform:scale(1.1);}
-100%{transform:scale(1);}
-}
-  
 h1{
 color:#ff4da6;
 text-shadow:0 0 20px #ff4da6;
@@ -119,6 +64,20 @@ margin-top:10px;
 display:none;
 border:2px solid #ff4da6;
 }
+
+/* BOTON WHATSAPP FLOTANTE */
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+border-radius:50px;
+padding:12px 18px;
+font-weight:bold;
+box-shadow:0 0 20px #25D366;
+z-index:999;
+}
 </style>
 </head>
 
@@ -152,11 +111,6 @@ border:2px solid #ff4da6;
 <p>CHACO: <span id="chaco">----</span></p>
 <p>URUGUAY: <span id="uruguay">----</span></p>
 
-</div>
-
-<div class="panel">
-<h2>📊 HISTORIAL</h2>
-<div id="historial"></div>
 </div>
 
 <div class="panel">
@@ -361,5 +315,12 @@ if(el) el.innerText=d[k];
 
 </script>
 
+<!-- BOTÓN FLOTANTE -->
+<a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar" target="_blank">
+<div class="whatsapp-float">
+📲 JUGAR AHORA
+</div>
+</a>
+
 </body>
-  </html>
+                                                               </html>
