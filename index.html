@@ -3,324 +3,324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LA REINA 832</title>
 
 <style>
-body{
+
+*{
 margin:0;
-font-family:Arial;
-background:black;
-color:white;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#000;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+position:relative;
+}
+
+/* Fondo */
+
+body::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at center,
+rgba(255,20,147,.20),
+transparent 60%);
+z-index:0;
+}
+
+.particula{
+position:absolute;
+width:4px;
+height:4px;
+background:#ff4da6;
+border-radius:50%;
+animation:flotar linear infinite;
+}
+
+@keyframes flotar{
+from{
+transform:translateY(100vh);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+to{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+.contenedor{
+width:95%;
+max-width:600px;
 text-align:center;
+position:relative;
+z-index:2;
+}
+
+.logo{
+width:250px;
+max-width:80%;
+margin-bottom:20px;
+filter:
+drop-shadow(0 0 15px #ff4da6)
+drop-shadow(0 0 20px #FFD700);
 }
 
 h1{
-color:#ff4da6;
-text-shadow:0 0 20px #ff4da6;
+color:#FFD700;
+font-size:34px;
+margin-bottom:10px;
+text-shadow:0 0 20px #FFD700;
+}
+
+.frase{
+color:#ff66cc;
+font-size:22px;
+margin-bottom:30px;
+text-shadow:0 0 15px #ff1493;
 }
 
 .panel{
-background:rgba(0,0,0,0.8);
-margin:15px;
-padding:20px;
-border-radius:15px;
-box-shadow:0 0 20px #ff4da6;
+background:rgba(0,0,0,.75);
+border:2px solid #ff4da6;
+border-radius:25px;
+padding:30px;
+box-shadow:0 0 30px #ff1493;
 }
 
-.numero{
-font-size:60px;
-color:#ff4da6;
-}
-
-.panel p{
-font-size:20px;
-font-weight:bold;
-background:rgba(255,255,255,0.05);
-padding:8px;
-border-radius:8px;
-margin:5px 0;
-}
-
-.girando{
-animation:spin 0.1s infinite;
-}
-
-@keyframes spin{
-0%{transform:translateY(-5px);}
-50%{transform:translateY(5px);}
-100%{transform:translateY(-5px);}
+input{
+width:100%;
+padding:16px;
+font-size:22px;
+border:none;
+border-radius:12px;
+text-align:center;
+outline:none;
+margin-bottom:15px;
 }
 
 button{
-background:#ff4da6;
+width:100%;
+padding:16px;
+font-size:22px;
+font-weight:bold;
 border:none;
+border-radius:12px;
+cursor:pointer;
+
+background:linear-gradient(
+45deg,
+#ff1493,
+#ff4da6,
+#ff66cc
+);
+
 color:white;
-padding:12px 20px;
-border-radius:10px;
+
+box-shadow:
+0 0 15px #ff1493,
+0 0 30px #ff1493;
+
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.resultado{
+font-size:90px;
+font-weight:bold;
+margin-top:25px;
+color:white;
+text-shadow:
+0 0 15px #ff4da6,
+0 0 30px #ff1493,
+0 0 50px #ff1493;
+}
+
+.textoResultado{
 margin-top:10px;
+color:#FFD700;
+font-size:20px;
 }
 
-.admin{
-display:none;
-border:2px solid #ff4da6;
+.girando{
+animation:latido .1s infinite;
 }
 
-/* BOTON WHATSAPP FLOTANTE */
-.whatsapp-float{
+@keyframes latido{
+50%{
+transform:scale(1.05);
+}
+}
+
+/* WhatsApp */
+
+.whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
 background:#25D366;
 color:white;
-border-radius:50px;
-padding:12px 18px;
+text-decoration:none;
+font-size:18px;
 font-weight:bold;
+padding:15px 20px;
+border-radius:50px;
 box-shadow:0 0 20px #25D366;
-z-index:999;
+z-index:9999;
+animation:pulso 1.5s infinite;
 }
+
+@keyframes pulso{
+50%{
+transform:scale(1.1);
+}
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="contenedor">
+
+<!-- CAMBIAR POR TU LOGO -->
+<img
+class="logo"
+src="TU-LOGO-AQUI.png"
+alt="LA REINA 832">
+
 <h1>👑 LA REINA 832 👑</h1>
 
-<div class="panel">
-<h2>🎰 GENERADOR</h2>
-<input id="palabra" placeholder="Tu palabra" style="padding:10px;width:80%;">
-<br>
-<button onclick="generar()">GIRAR</button>
-<div id="resultado" class="numero">----</div>
+<div class="frase">
+✨ Descubrí tu número de la suerte ✨
 </div>
 
 <div class="panel">
-<h2>🔥 NÚMERO CALIENTE</h2>
-<div id="numeroCaliente" class="numero">----</div>
+
+<input
+id="palabra"
+placeholder="Escribí una palabra">
+
+<button onclick="generar()">
+🎰 GENERAR
+</button>
+
+<div id="resultado" class="resultado">
+----
 </div>
 
-<div class="panel">
-<h2>📊 RESULTADOS DEL DÍA</h2>
-
-<p>CIUDAD: <span id="ciudad">----</span></p>
-<p>PROVINCIA: <span id="provincia">----</span></p>
-<p>CÓRDOBA: <span id="cordoba">----</span></p>
-<p>SANTA FE: <span id="santafe">----</span></p>
-<p>ENTRE RÍOS: <span id="entrerios">----</span></p>
-<p>CORRIENTES: <span id="corrientes">----</span></p>
-<p>MENDOZA: <span id="mendoza">----</span></p>
-<p>CHACO: <span id="chaco">----</span></p>
-<p>URUGUAY: <span id="uruguay">----</span></p>
+<div class="textoResultado">
+🍀 Tu suerte comienza con un número 🍀
+</div>
 
 </div>
 
-<div class="panel">
-<h2>👑 LOS 3 DE LAS 3</h2>
-<div class="numero" id="tres1">000</div>
-<div class="numero" id="tres2">000</div>
-<div class="numero" id="tres3">000</div>
 </div>
 
-<div class="panel">
-<a href="https://wa.me/543517682897?text=🔥%20QUIERO%20JUGAR%20YA" target="_blank">
-<button style="background:#25D366">📲 JUGAR AHORA</button>
+<a
+class="whatsapp"
+href="https://wa.me/543517682897?text=Hola%20quiero%20jugar"
+target="_blank">
+📲 JUGAR AHORA
 </a>
-</div>
 
-<button onclick="abrirPanel()">⚙ ADMIN</button>
+<script>
 
-<div id="admin" class="panel admin">
+/* Partículas */
 
-<h3>NÚMERO CALIENTE</h3>
-<input id="inputNumero"><button onclick="guardarNumero()">OK</button>
+for(let i=0;i<40;i++){
 
-<h3>RESULTADOS</h3>
+let p=document.createElement("div");
 
-<input id="input_ciudad" placeholder="Ciudad">
-<button onclick="guardarResultado('ciudad')">OK</button><br>
+p.className="particula";
 
-<input id="input_provincia" placeholder="Provincia">
-<button onclick="guardarResultado('provincia')">OK</button><br>
+p.style.left=Math.random()*100+"%";
 
-<input id="input_cordoba" placeholder="Córdoba">
-<button onclick="guardarResultado('cordoba')">OK</button><br>
+p.style.animationDuration=
+(5+Math.random()*8)+"s";
 
-<input id="input_santafe" placeholder="Santa Fe">
-<button onclick="guardarResultado('santafe')">OK</button><br>
+p.style.animationDelay=
+Math.random()*5+"s";
 
-<input id="input_entrerios" placeholder="Entre Ríos">
-<button onclick="guardarResultado('entrerios')">OK</button><br>
+document.body.appendChild(p);
 
-<input id="input_corrientes" placeholder="Corrientes">
-<button onclick="guardarResultado('corrientes')">OK</button><br>
+}
 
-<input id="input_mendoza" placeholder="Mendoza">
-<button onclick="guardarResultado('mendoza')">OK</button><br>
+/* Generador */
 
-<input id="input_chaco" placeholder="Chaco">
-<button onclick="guardarResultado('chaco')">OK</button><br>
+function generar(){
 
-<input id="input_uruguay" placeholder="Uruguay">
-<button onclick="guardarResultado('uruguay')">OK</button>
+let palabra=
+document.getElementById("palabra").value;
 
-<h3>LOS 3</h3>
+if(!palabra){
+alert("Escribí una palabra");
+return;
+}
 
-<input id="input_tres1">
-<button onclick="guardar3('tres1')">OK</button><br>
+let resultado=
+document.getElementById("resultado");
 
-<input id="input_tres2">
-<button onclick="guardar3('tres2')">OK</button><br>
-
-<input id="input_tres3">
-<button onclick="guardar3('tres3')">OK</button>
-
-<br><br>
-<button onclick="guardarEnHistorial()">💾 GUARDAR EN HISTORIAL</button>
-
-</div>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDk5iVgJcWKFwqTj8s7nMDnPw99iXHEaRg",
-  authDomain: "la-reina-832.firebaseapp.com",
-  databaseURL: "https://la-reina-832-default-rtdb.firebaseio.com",
-  projectId: "la-reina-832",
-  storageBucket: "la-reina-832.firebasestorage.app",
-  messagingSenderId: "615694841996",
-  appId: "1:615694841996:web:f07180082e8cda56b123a9"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const CLAVE="832REINA";
-
-/* GENERADOR */
-window.generar=function(){
-
-let palabra=document.getElementById("palabra").value;
-if(!palabra){alert("Escribí algo");return;}
-
-let div=document.getElementById("resultado");
-div.classList.add("girando");
+resultado.classList.add("girando");
 
 let vueltas=0;
 
 let anim=setInterval(()=>{
-div.innerText=Math.floor(Math.random()*10000).toString().padStart(4,'0');
+
+resultado.innerText=
+Math.floor(Math.random()*10000)
+.toString()
+.padStart(4,"0");
+
 vueltas++;
 
 if(vueltas>20){
+
 clearInterval(anim);
 
 let suma=0;
-palabra=palabra.toUpperCase();
+
+palabra=
+palabra.toUpperCase();
 
 for(let i=0;i<palabra.length;i++){
-suma+=palabra.charCodeAt(i);
+
+suma+=
+palabra.charCodeAt(i);
+
 }
 
-let numero=(suma*832)%10000;
-numero=numero.toString().padStart(4,'0');
+let numero=
+(suma*832)%10000;
 
-div.classList.remove("girando");
-div.innerText=numero;
+resultado.innerText=
+numero.toString().padStart(4,"0");
+
+resultado.classList.remove("girando");
+
 }
+
 },100);
 
-};
-
-/* ADMIN */
-window.abrirPanel=function(){
-let clave=prompt("Clave admin");
-if(clave===CLAVE){
-document.getElementById("admin").style.display="block";
-}else{
-alert("Incorrecto");
 }
-};
-
-/* GUARDAR */
-window.guardarNumero=function(){
-let v=document.getElementById("inputNumero").value;
-set(ref(db,"numeroCaliente"),v);
-};
-
-window.guardarResultado=function(lugar){
-let v=document.getElementById("input_"+lugar).value;
-set(ref(db,"resultados/"+lugar),v);
-};
-
-window.guardar3=function(id){
-let v=document.getElementById("input_"+id).value;
-set(ref(db,"tres/"+id),v);
-};
-
-/* HISTORIAL */
-window.guardarEnHistorial=function(){
-
-let fecha = new Date().toLocaleString();
-
-let data = {
-fecha: fecha,
-cordoba: document.getElementById("cordoba").innerText
-};
-
-set(ref(db,"historial/"+Date.now()),data);
-
-};
-
-onValue(ref(db,"historial"),snap=>{
-let d=snap.val();
-if(!d)return;
-
-let cont="";
-for(let k in d){
-let h=d[k];
-cont += `<p>${h.fecha} | CBA: ${h.cordoba}</p>`;
-}
-
-document.getElementById("historial").innerHTML=cont;
-});
-
-/* LEER */
-onValue(ref(db,"numeroCaliente"),snap=>{
-if(snap.exists()){
-document.getElementById("numeroCaliente").innerText=snap.val();
-}
-});
-
-onValue(ref(db,"resultados"),snap=>{
-let d=snap.val();
-if(!d)return;
-
-for(let k in d){
-let el=document.getElementById(k);
-if(el) el.innerText=d[k];
-}
-});
-
-onValue(ref(db,"tres"),snap=>{
-let d=snap.val();
-if(!d)return;
-
-for(let k in d){
-let el=document.getElementById(k);
-if(el) el.innerText=d[k];
-}
-});
 
 </script>
 
-<!-- BOTÓN FLOTANTE -->
-<a href="https://wa.me/543517682897?text=Hola%20quiero%20jugar" target="_blank">
-<div class="whatsapp-float">
-📲 JUGAR AHORA
-</div>
-</a>
-
 </body>
-                                                               </html>
+</html>
