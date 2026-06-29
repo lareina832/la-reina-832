@@ -211,19 +211,37 @@ alt="LA REINA 832">
 ✨ Descubrí tu número de la suerte ✨
 </div>
 
-<div class="panel">
-
-<input
-id="palabra"
-placeholder="Escribí una palabra">
-
-<button onclick="generar()">
-🎰 GENERAR
-</button>
-
 <div id="resultado" class="resultado">
 ----
 </div>
+
+<div class="resultado-card" id="card4" style="display:none;">
+<h3>👑 4 CIFRAS</h3>
+<div id="resultado4" class="numeroResultado">----</div>
+</div>
+
+<div class="resultado-card" id="card3" style="display:none;">
+<h3>🎯 3 CIFRAS</h3>
+<div id="resultado3" class="numeroResultado">---</div>
+</div>
+
+<div class="resultado-card" id="card2" style="display:none;">
+<h3>⭐ 2 CIFRAS</h3>
+<div id="resultado2" class="numeroResultado">--</div>
+</div>
+
+<div class="resultado-card" id="cardoro" style="display:none;">
+<h3>💎 NÚMERO DE ORO</h3>
+<div id="resultadoOro" class="numeroResultado">832</div>
+</div>
+
+<div class="textoResultado">
+🍀 Tu suerte comienza con un número 🍀
+</div>
+
+<button id="compartir" style="display:none;margin-top:20px;">
+📤 COMPARTIR MI SUERTE
+</button>
 
 <div class="textoResultado">
 🍀 Tu suerte comienza con un número 🍀
