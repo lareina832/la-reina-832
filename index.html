@@ -7,7 +7,6 @@
 <title>LA REINA 832</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -26,7 +25,6 @@ position:relative;
 }
 
 /* Fondo */
-
 body::before{
 content:"";
 position:absolute;
@@ -49,17 +47,9 @@ animation:flotar linear infinite;
 }
 
 @keyframes flotar{
-from{
-transform:translateY(100vh);
-opacity:0;
-}
-50%{
-opacity:1;
-}
-to{
-transform:translateY(-100px);
-opacity:0;
-}
+from{ transform:translateY(100vh); opacity:0; }
+50%{ opacity:1; }
+to{ transform:translateY(-100px); opacity:0; }
 }
 
 .contenedor{
@@ -68,6 +58,7 @@ max-width:600px;
 text-align:center;
 position:relative;
 z-index:2;
+padding: 20px 0;
 }
 
 .logo{
@@ -120,42 +111,41 @@ font-weight:bold;
 border:none;
 border-radius:12px;
 cursor:pointer;
-
-background:linear-gradient(
-45deg,
-#ff1493,
-#ff4da6,
-#ff66cc
-);
-
+background:linear-gradient(45deg, #ff1493, #ff4da6, #ff66cc);
 color:white;
-
-box-shadow:
-0 0 15px #ff1493,
-0 0 30px #ff1493;
-
+box-shadow: 0 0 15px #ff1493, 0 0 30px #ff1493;
 transition:.3s;
+margin-bottom: 25px;
 }
 
 button:hover{
 transform:scale(1.03);
 }
 
+/* Estilos para los múltiples resultados */
+.bloque-resultado {
+margin-bottom: 15px;
+}
+
+.etiqueta {
+color: #FFD700;
+font-size: 20px;
+font-weight: bold;
+text-transform: uppercase;
+margin-bottom: 2px;
+text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
 .resultado{
-font-size:90px;
+font-size: 55px;
 font-weight:bold;
-margin-top:25px;
 color:white;
 text-shadow:
 0 0 15px #ff4da6,
 0 0 30px #ff1493,
 0 0 50px #ff1493;
-}
-
-.textoResultado{
-margin-top:10px;
-color:#FFD700;
-font-size:20px;
+line-height: 1;
+margin-bottom: 10px;
 }
 
 .girando{
@@ -163,13 +153,10 @@ animation:latido .1s infinite;
 }
 
 @keyframes latido{
-50%{
-transform:scale(1.05);
-}
+50%{ transform:scale(1.05); }
 }
 
 /* WhatsApp */
-
 .whatsapp{
 position:fixed;
 bottom:20px;
@@ -187,11 +174,8 @@ animation:pulso 1.5s infinite;
 }
 
 @keyframes pulso{
-50%{
-transform:scale(1.1);
+50%{ transform:scale(1.1); }
 }
-}
-
 </style>
 </head>
 
@@ -199,128 +183,103 @@ transform:scale(1.1);
 
 <div class="contenedor">
 
-<!-- CAMBIAR POR TU LOGO -->
-<img
-class="logo"
-src="https://lareina832.github.io/la-reina-832/file_00000000a2c4720e94c7b05bf1f134fa.png"
-alt="LA REINA 832">
+<img class="logo" src="https://lareina832.github.io/la-reina-832/file_00000000a2c4720e94c7b05bf1f134fa.png" alt="LA REINA 832">
 
 <h1>👑 LA REINA 832 👑</h1>
-
-<div class="frase">
-✨ Descubrí tu número de la suerte ✨
-</div>
+<div class="frase">✨ Descubrí tu número de la suerte ✨</div>
 
 <div class="panel">
+<input id="palabra" placeholder="Escribí una palabra">
+<button onclick="generar()">🎰 GENERAR</button>
 
-<input
-id="palabra"
-placeholder="Escribí una palabra">
-
-<button onclick="generar()">
-🎰 GENERAR
-</button>
-
-<div id="resultado" class="resultado">
-----
+<div class="bloque-resultado">
+<div class="etiqueta">Cuatro cifras</div>
+<div id="res4" class="resultado">----</div>
 </div>
 
-<div class="textoResultado">
-🍀 Tu suerte comienza con un número 🍀
+<div class="bloque-resultado">
+<div class="etiqueta">Tres cifras</div>
+<div id="res3" class="resultado">---</div>
+</div>
+
+<div class="bloque-resultado">
+<div class="etiqueta">Dos cifras</div>
+<div id="res2" class="resultado">--</div>
+</div>
 </div>
 
 </div>
 
-</div>
-
-<a
-class="whatsapp"
-href="https://wa.me/543517682897?text=Hola%20quiero%20jugar"
-target="_blank">
-📲 JUGAR AHORA
-</a>
+<a class="whatsapp" href="https://wa.me/543517682897?text=Hola%20quiero%20jugar" target="_blank">📲 JUGAR AHORA</a>
 
 <script>
-
-/* Partículas */
-
+/* Partículas de fondo */
 for(let i=0;i<40;i++){
-
 let p=document.createElement("div");
-
 p.className="particula";
-
 p.style.left=Math.random()*100+"%";
-
-p.style.animationDuration=
-(5+Math.random()*8)+"s";
-
-p.style.animationDelay=
-Math.random()*5+"s";
-
+p.style.animationDuration=(5+Math.random()*8)+"s";
+p.style.animationDelay=Math.random()*5+"s";
 document.body.appendChild(p);
-
 }
 
-/* Generador */
-
+/* Generador de números */
 function generar(){
-
-let palabra=
-document.getElementById("palabra").value;
+let palabra = document.getElementById("palabra").value.trim();
 
 if(!palabra){
 alert("Escribí una palabra");
 return;
 }
 
-let resultado=
-document.getElementById("resultado");
+let res4 = document.getElementById("res4");
+let res3 = document.getElementById("res3");
+let res2 = document.getElementById("res2");
 
-resultado.classList.add("girando");
+// Añadimos la animación a los tres campos
+res4.classList.add("girando");
+res3.classList.add("girando");
+res2.classList.add("girando");
 
-let vueltas=0;
+let vueltas = 0;
 
-let anim=setInterval(()=>{
-
-resultado.innerText=
-Math.floor(Math.random()*10000)
-.toString()
-.padStart(4,"0");
+let anim = setInterval(() => {
+// Efecto de números corriendo aleatoriamente
+res4.innerText = Math.floor(Math.random()*10000).toString().padStart(4,"0");
+res3.innerText = Math.floor(Math.random()*1000).toString().padStart(3,"0");
+res2.innerText = Math.floor(Math.random()*100).toString().padStart(2,"0");
 
 vueltas++;
 
-if(vueltas>20){
-
+if(vueltas > 20){
 clearInterval(anim);
 
-let suma=0;
+palabra = palabra.toUpperCase();
+let suma = 0;
 
-palabra=
-palabra.toUpperCase();
-
-for(let i=0;i<palabra.length;i++){
-
-suma+=
-palabra.charCodeAt(i);
-
+// Calculamos la base según los caracteres
+for(let i=0; i<palabra.length; i++){
+suma += palabra.charCodeAt(i);
 }
 
-let numero=
-(suma*832)%10000;
+// Fórmulas matemáticas diferentes para que den números totalmente distintos
+let num4 = (suma * 832) % 10000;
+let num3 = (suma * 473) % 1000;
+let num2 = (suma * 19) % 100;
 
-resultado.innerText=
-numero.toString().padStart(4,"0");
+// Asignamos los resultados con sus respectivos formatos
+res4.innerText = num4.toString().padStart(4, "0");
+res3.innerText = num3.toString().padStart(3, "0");
+res2.innerText = num2.toString().padStart(2, "0");
 
-resultado.classList.remove("girando");
-
+// Removemos la animación
+res4.classList.remove("girando");
+res3.classList.remove("girando");
+res2.classList.remove("girando");
 }
-
-},100);
-
+}, 100);
 }
-
 </script>
 
 </body>
-    </html>
+</html>
