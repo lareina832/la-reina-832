@@ -19,9 +19,10 @@ background:#000;
 min-height:100vh;
 display:flex;
 justify-content:center;
-align-items:center;
-overflow:hidden;
+align-items:flex-start; /* Cambiado para que empiece desde arriba si es largo */
+overflow-y:auto; /* Permite hacer scroll vertical si no entra en la pantalla */
 position:relative;
+padding:20px 0 80px 0; /* Espacio extra abajo para que el botón de WhatsApp no tape nada */
 }
 
 /* Fondo */
@@ -35,6 +36,7 @@ radial-gradient(circle at center,
 rgba(255,20,147,.20),
 transparent 60%);
 z-index:0;
+pointer-events:none;
 }
 
 .particula{
@@ -44,6 +46,7 @@ height:4px;
 background:#ff4da6;
 border-radius:50%;
 animation:flotar linear infinite;
+pointer-events:none;
 }
 
 @keyframes flotar{
@@ -58,13 +61,13 @@ max-width:600px;
 text-align:center;
 position:relative;
 z-index:2;
-padding: 20px 0;
+margin:0 auto;
 }
 
 .logo{
-width:250px;
-max-width:80%;
-margin-bottom:20px;
+width:220px; /* Un poquito más chico para optimizar espacio */
+max-width:75%;
+margin-bottom:15px;
 filter:
 drop-shadow(0 0 15px #ff4da6)
 drop-shadow(0 0 20px #FFD700);
@@ -72,15 +75,15 @@ drop-shadow(0 0 20px #FFD700);
 
 h1{
 color:#FFD700;
-font-size:34px;
-margin-bottom:10px;
+font-size:30px;
+margin-bottom:5px;
 text-shadow:0 0 20px #FFD700;
 }
 
 .frase{
 color:#ff66cc;
-font-size:22px;
-margin-bottom:30px;
+font-size:20px;
+margin-bottom:20px;
 text-shadow:0 0 15px #ff1493;
 }
 
@@ -88,14 +91,14 @@ text-shadow:0 0 15px #ff1493;
 background:rgba(0,0,0,.75);
 border:2px solid #ff4da6;
 border-radius:25px;
-padding:30px;
+padding:25px 20px;
 box-shadow:0 0 30px #ff1493;
 }
 
 input{
 width:100%;
-padding:16px;
-font-size:22px;
+padding:14px;
+font-size:20px;
 border:none;
 border-radius:12px;
 text-align:center;
@@ -105,8 +108,8 @@ margin-bottom:15px;
 
 button{
 width:100%;
-padding:16px;
-font-size:22px;
+padding:14px;
+font-size:20px;
 font-weight:bold;
 border:none;
 border-radius:12px;
@@ -115,37 +118,43 @@ background:linear-gradient(45deg, #ff1493, #ff4da6, #ff66cc);
 color:white;
 box-shadow: 0 0 15px #ff1493, 0 0 30px #ff1493;
 transition:.3s;
-margin-bottom: 25px;
+margin-bottom: 20px;
 }
 
 button:hover{
 transform:scale(1.03);
 }
 
-/* Estilos para los múltiples resultados */
+/* Bloques de Resultados */
 .bloque-resultado {
-margin-bottom: 15px;
+margin-top: 15px;
+border-top: 1px dashed rgba(255, 77, 166, 0.3);
+padding-top: 12px;
+}
+
+.bloque-resultado:first-of-type {
+border-top: none;
+padding-top: 5px;
 }
 
 .etiqueta {
 color: #FFD700;
-font-size: 20px;
+font-size: 18px;
 font-weight: bold;
 text-transform: uppercase;
-margin-bottom: 2px;
+margin-bottom: 5px;
 text-shadow: 0 0 10px rgba(255,215,0,0.5);
 }
 
 .resultado{
-font-size: 55px;
+font-size: 45px;
 font-weight:bold;
 color:white;
 text-shadow:
 0 0 15px #ff4da6,
 0 0 30px #ff1493,
 0 0 50px #ff1493;
-line-height: 1;
-margin-bottom: 10px;
+line-height: 1.1;
 }
 
 .girando{
@@ -193,17 +202,17 @@ animation:pulso 1.5s infinite;
 <button onclick="generar()">🎰 GENERAR</button>
 
 <div class="bloque-resultado">
-<div class="etiqueta">Cuatro cifras</div>
+<div class="etiqueta">CUATRO CIFRAS</div>
 <div id="res4" class="resultado">----</div>
 </div>
 
 <div class="bloque-resultado">
-<div class="etiqueta">Tres cifras</div>
+<div class="etiqueta">TRES CIFRAS</div>
 <div id="res3" class="resultado">---</div>
 </div>
 
 <div class="bloque-resultado">
-<div class="etiqueta">Dos cifras</div>
+<div class="etiqueta">DOS CIFRAS</div>
 <div id="res2" class="resultado">--</div>
 </div>
 </div>
@@ -213,7 +222,7 @@ animation:pulso 1.5s infinite;
 <a class="whatsapp" href="https://wa.me/543517682897?text=Hola%20quiero%20jugar" target="_blank">📲 JUGAR AHORA</a>
 
 <script>
-/* Partículas de fondo */
+/* Partículas */
 for(let i=0;i<40;i++){
 let p=document.createElement("div");
 p.className="particula";
@@ -223,7 +232,7 @@ p.style.animationDelay=Math.random()*5+"s";
 document.body.appendChild(p);
 }
 
-/* Generador de números */
+/* Generador */
 function generar(){
 let palabra = document.getElementById("palabra").value.trim();
 
@@ -236,7 +245,6 @@ let res4 = document.getElementById("res4");
 let res3 = document.getElementById("res3");
 let res2 = document.getElementById("res2");
 
-// Añadimos la animación a los tres campos
 res4.classList.add("girando");
 res3.classList.add("girando");
 res2.classList.add("girando");
@@ -244,7 +252,6 @@ res2.classList.add("girando");
 let vueltas = 0;
 
 let anim = setInterval(() => {
-// Efecto de números corriendo aleatoriamente
 res4.innerText = Math.floor(Math.random()*10000).toString().padStart(4,"0");
 res3.innerText = Math.floor(Math.random()*1000).toString().padStart(3,"0");
 res2.innerText = Math.floor(Math.random()*100).toString().padStart(2,"0");
@@ -257,22 +264,19 @@ clearInterval(anim);
 palabra = palabra.toUpperCase();
 let suma = 0;
 
-// Calculamos la base según los caracteres
 for(let i=0; i<palabra.length; i++){
 suma += palabra.charCodeAt(i);
 }
 
-// Fórmulas matemáticas diferentes para que den números totalmente distintos
+// Números diferentes usando diferentes multiplicadores fijos
 let num4 = (suma * 832) % 10000;
 let num3 = (suma * 473) % 1000;
 let num2 = (suma * 19) % 100;
 
-// Asignamos los resultados con sus respectivos formatos
 res4.innerText = num4.toString().padStart(4, "0");
 res3.innerText = num3.toString().padStart(3, "0");
 res2.innerText = num2.toString().padStart(2, "0");
 
-// Removemos la animación
 res4.classList.remove("girando");
 res3.classList.remove("girando");
 res2.classList.remove("girando");
@@ -282,4 +286,4 @@ res2.classList.remove("girando");
 </script>
 
 </body>
-</html>
+  </html>
